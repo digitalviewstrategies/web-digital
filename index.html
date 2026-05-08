@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital View — Agencia de marketing digital especializada en inmobiliarias. Generamos leads de calidad a través de Meta Ads, contenido y estrategia." />
+  <title>Digital View — Marketing para Inmobiliarias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ───── NAVBAR ───── -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#hero" class="logo">
+        <span class="logo__digital">Digital</span>
+        <span class="logo__view"> view</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#servicios" class="nav__link">Servicios</a>
+        <a href="#proceso" class="nav__link">Proceso</a>
+        <a href="#testimonios" class="nav__link">Testimonios</a>
+        <a href="#equipo" class="nav__link">Equipo</a>
+        <a href="#contacto" class="nav__link">Contacto</a>
+      </nav>
+      <a href="#contacto" class="btn btn--primary nav__cta">Trabajemos juntos</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ───── HERO ───── -->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__content reveal">
+        <h1 class="hero__headline">
+          Tu inmobiliaria<br />no necesita<br />más suerte.
+        </h1>
+        <p class="hero__sub">
+          Necesita un sistema que traiga prospectos todos los días<br />
+          — sin depender del boca a boca.
+        </p>
+        <a href="#contacto" class="btn btn--accent hero__cta">Quiero más leads →</a>
+      </div>
+      <div class="hero__stats reveal reveal--delay">
+        <div class="stat stat--blue">
+          <span class="stat__number">+20</span>
+          <span class="stat__label">Inmobiliarias confían en DV</span>
+        </div>
+        <div class="stat stat--dark">
+          <span class="stat__number stat__number--lime">+1000M</span>
+          <span class="stat__label">Invertidos en pauta publicitaria</span>
+        </div>
+        <div class="stat stat--dark">
+          <span class="stat__label stat__label--bold">Decenas de propiedades<br /><em>vendidas y captadas</em></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__line"></div>
+  </section>
+
+  <!-- ───── EL PROBLEMA ───── -->
+  <section class="problema" id="problema">
+    <div class="container">
+      <div class="problema__inner reveal">
+        <div class="problema__left">
+          <p class="section-tag">El problema</p>
+          <h2 class="problema__title">El boca a boca<br />no es una<br />estrategia</h2>
+          <p class="problema__subtitle">Es una esperanza.</p>
+        </div>
+        <div class="problema__right">
+          <ul class="problema__list">
+            <li class="problema__item">
+              <span class="problema__dot"></span>
+              Dependen de referidos. Cuando no llegan, el negocio se frena.
+            </li>
+            <li class="problema__item">
+              <span class="problema__dot"></span>
+              No controlan cuándo aparece el próximo comprador o propietario.
+            </li>
+            <li class="problema__item">
+              <span class="problema__dot"></span>
+              Sin un canal propio y predecible, están rehenes del boca a boca.
+            </li>
+          </ul>
+          <div class="problema__result">
+            <strong>El resultado:</strong> crecimiento impredecible, oportunidades perdidas, competencia que avanza.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── SERVICIOS ───── -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <p class="section-tag reveal">Lo que hacemos</p>
+      <h2 class="section-title reveal">Nuestros servicios</h2>
+      <div class="servicios__grid">
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Análisis &amp; Estrategia</h3>
+          <p class="service-card__desc">Entendemos tu negocio, tu zona y el perfil de cliente que querés atraer. Detectamos oportunidades antes de ejecutar.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Planificación</h3>
+          <p class="service-card__desc">Organizamos la estrategia en un plan de acción concreto y calendarizado, previsible y medible en cada etapa.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Fotografía &amp; Videos</h3>
+          <p class="service-card__desc">Contenido visual de alta calidad: desde fotos profesionales hasta reels y muestras virtuales de propiedades.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Meta Ads</h3>
+          <p class="service-card__desc">Campañas en Facebook e Instagram con un único foco: generar consultas reales y leads de calidad, no solo clics.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Base de Datos</h3>
+          <p class="service-card__desc">Organizamos todos los contactos en una base de datos compartida (Sheets) para seguimiento claro de cada lead.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Análisis y Reportes</h3>
+          <p class="service-card__desc">Analizamos en profundidad cómo performó cada etapa y ajustamos lo necesario para seguir alcanzando objetivos.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── PROCESO ───── -->
+  <section class="proceso" id="proceso">
+    <div class="container">
+      <p class="section-tag reveal">Cómo trabajamos</p>
+      <h2 class="section-title reveal">Etapas</h2>
+      <div class="proceso__timeline">
+        <div class="proceso__step reveal">
+          <div class="proceso__dot"><span>01</span></div>
+          <h3 class="proceso__step-title">Análisis &amp; Estrategia</h3>
+          <p class="proceso__step-desc">Entendemos tu negocio, zona y cliente ideal.</p>
+        </div>
+        <div class="proceso__connector"></div>
+        <div class="proceso__step reveal">
+          <div class="proceso__dot"><span>02</span></div>
+          <h3 class="proceso__step-title">Planificación</h3>
+          <p class="proceso__step-desc">Definimos qué se comunica, cómo y para quién.</p>
+        </div>
+        <div class="proceso__connector"></div>
+        <div class="proceso__step reveal">
+          <div class="proceso__dot"><span>03</span></div>
+          <h3 class="proceso__step-title">Implementación</h3>
+          <p class="proceso__step-desc">Lanzamos campañas y contenidos orientados a generar consultas reales.</p>
+        </div>
+        <div class="proceso__connector"></div>
+        <div class="proceso__step reveal">
+          <div class="proceso__dot"><span>04</span></div>
+          <h3 class="proceso__step-title">Activación</h3>
+          <p class="proceso__step-desc">Optimizamos en tiempo real para bajar el costo por lead y mejorar calidad.</p>
+        </div>
+        <div class="proceso__connector"></div>
+        <div class="proceso__step reveal">
+          <div class="proceso__dot"><span>05</span></div>
+          <h3 class="proceso__step-title">Ajustes y Métricas</h3>
+          <p class="proceso__step-desc">Cada mes analizamos métricas y ajustamos para seguir creciendo.</p>
+        </div>
+      </div>
+      <div class="proceso__result reveal">
+        <p><strong>Resultado:</strong> Un flujo constante de compradores, vendedores y propietarios interesados — sin esperar a que alguien te recomiende.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── TESTIMONIOS ───── -->
+  <section class="testimonios" id="testimonios">
+    <div class="container">
+      <p class="section-tag reveal">Casos de éxito</p>
+      <h2 class="section-title reveal">Resultados reales</h2>
+      <div class="testimonios__grid">
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__badge">@digitalviewagency</div>
+          <h3 class="testimonial-card__name">Viviana Sasía</h3>
+          <p class="testimonial-card__role">Team Leader en ZipCode · <a href="https://instagram.com/viviana.sasia" target="_blank" rel="noopener">@viviana.sasia</a></p>
+          <ul class="testimonial-card__metrics">
+            <li><span class="metric-number">+1500</span><span class="metric-label">leads generados</span></li>
+            <li><span class="metric-number">900K U$S</span><span class="metric-label">captados</span></li>
+            <li><span class="metric-number">+100</span><span class="metric-label">visitas</span></li>
+            <li><span class="metric-number">5</span><span class="metric-label">ventas en 6 meses</span></li>
+          </ul>
+          <div class="testimonial-card__highlight">3500% vs. período anterior</div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__badge">@digitalviewagency</div>
+          <h3 class="testimonial-card__name">Jose M. Chaher</h3>
+          <p class="testimonial-card__role">Asesor en Soldati Vista · <a href="https://instagram.com/team_noia" target="_blank" rel="noopener">@team_noia</a></p>
+          <ul class="testimonial-card__metrics">
+            <li><span class="metric-number">+400</span><span class="metric-label">leads (últimos 90 días)</span></li>
+            <li><span class="metric-number">10 días</span><span class="metric-label">primera venta</span></li>
+            <li><span class="metric-number">+20</span><span class="metric-label">visitas</span></li>
+            <li><span class="metric-number">1400%</span><span class="metric-label">aumento de alcance</span></li>
+          </ul>
+          <div class="testimonial-card__highlight">633,3% de contactos generados</div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__badge">@digitalviewagency</div>
+          <h3 class="testimonial-card__name">Abitat</h3>
+          <p class="testimonial-card__role">Inmobiliaria en Nordelta y Puertos del Lago · <a href="https://instagram.com/somosabitat" target="_blank" rel="noopener">@somosabitat</a></p>
+          <ul class="testimonial-card__metrics">
+            <li><span class="metric-number">240</span><span class="metric-label">leads (últimos 90 días)</span></li>
+            <li><span class="metric-number">+10</span><span class="metric-label">visitas</span></li>
+            <li><span class="metric-number">1400%</span><span class="metric-label">aumento de alcance</span></li>
+            <li><span class="metric-number">633%</span><span class="metric-label">contactos generados</span></li>
+          </ul>
+          <div class="testimonial-card__highlight">Inmobiliaria referente en Nordelta</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── VIDEO SALES LETTER ───── -->
+  <section class="vsl" id="vsl">
+    <div class="container">
+      <p class="section-tag reveal">Entendé el método</p>
+      <h2 class="section-title reveal">¿Por qué<br />Digital View?</h2>
+      <div class="vsl__wrapper reveal">
+        <div class="vsl__player">
+          <!-- Reemplazá VIDEO_ID con el ID real del video de YouTube -->
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="Digital View — Por qué elegirnos"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── EQUIPO ───── -->
+  <section class="equipo" id="equipo">
+    <div class="container">
+      <p class="section-tag reveal">Las personas detrás del resultado</p>
+      <h2 class="section-title reveal">Nuestro equipo</h2>
+
+      <div class="equipo__socios">
+        <div class="team-card team-card--partner reveal">
+          <div class="team-card__avatar"><img src="Fotos equipo/Valentin.jpg" alt="Valentín" class="team-card__avatar-img"></div>
+          <span class="team-card__badge">Socio</span>
+          <h3 class="team-card__name">Valentín</h3>
+          <p class="team-card__role">Área Comercial</p>
+        </div>
+        <div class="team-card team-card--partner reveal">
+          <div class="team-card__avatar"><img src="Fotos equipo/Nicolas.jpg" alt="Nicolás" class="team-card__avatar-img"></div>
+          <span class="team-card__badge">Socio</span>
+          <h3 class="team-card__name">Nicolás</h3>
+          <p class="team-card__role">Líder Creativo</p>
+        </div>
+      </div>
+
+      <div class="equipo__staff">
+        <div class="team-card reveal">
+          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Felipe.jpg" alt="Felipe" class="team-card__avatar-img"></div>
+          <h3 class="team-card__name">Felipe</h3>
+          <p class="team-card__role">Media Buyer</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Elias.jpg" alt="Elias" class="team-card__avatar-img"></div>
+          <h3 class="team-card__name">Elias</h3>
+          <p class="team-card__role">Project Manager</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Bautista.jpg" alt="Bautista" class="team-card__avatar-img"></div>
+          <h3 class="team-card__name">Bautista</h3>
+          <p class="team-card__role">Project Manager</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── CONTACTO ───── -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <div class="contacto__inner">
+        <div class="contacto__left reveal">
+          <p class="section-tag">Hablemos</p>
+          <h2 class="contacto__title">Trabajemos<br />juntos</h2>
+          <p class="contacto__sub">Cualquier pregunta no dudes en consultarnos.</p>
+          <div class="contacto__info">
+            <a href="https://instagram.com/digitalviewagency" target="_blank" rel="noopener" class="contacto__link">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="contacto__icon"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              @digitalviewagency
+            </a>
+            <a href="mailto:digitalviewstrategies@gmail.com" class="contacto__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="contacto__icon"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              digitalviewstrategies@gmail.com
+            </a>
+          </div>
+        </div>
+        <div class="contacto__right reveal">
+          <form class="form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form__group">
+              <label class="form__label" for="nombre">Nombre</label>
+              <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="email">Email</label>
+              <input class="form__input" type="email" id="email" name="email" placeholder="tu@email.com" required />
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="telefono">Teléfono</label>
+              <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="+54 9 11 ..." />
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="mensaje">Mensaje</label>
+              <textarea class="form__input form__textarea" id="mensaje" name="mensaje" placeholder="Contanos sobre tu inmobiliaria..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--accent btn--full" id="submit-btn">Enviar mensaje →</button>
+            <p class="form__success" id="form-success">¡Mensaje enviado! Te contactamos pronto.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── FOOTER ───── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#hero" class="logo logo--footer">
+        <span class="logo__digital">Digital</span>
+        <span class="logo__view"> view</span>
+      </a>
+      <nav class="footer__nav">
+        <a href="#servicios" class="footer__link">Servicios</a>
+        <a href="#proceso" class="footer__link">Proceso</a>
+        <a href="#testimonios" class="footer__link">Testimonios</a>
+        <a href="#equipo" class="footer__link">Equipo</a>
+        <a href="#contacto" class="footer__link">Contacto</a>
+      </nav>
+      <p class="footer__copy">© 2026 Digital View · Marketing agency</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
