@@ -170,37 +170,29 @@ document.querySelectorAll('.servicios__grid, .testimonios__grid').forEach(grid =
   });
 });
 
-/* ─── Contact form (Formspree) ─── */
+/* ─── Contact form → WhatsApp ─── */
 const form = document.getElementById('contact-form');
 const submitBtn = document.getElementById('submit-btn');
-const successMsg = document.getElementById('form-success');
+const WA_NUMBER = '5491170669425';
 
 if (form) {
-  form.addEventListener('submit', async e => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    submitBtn.textContent = 'Enviando...';
-    submitBtn.disabled = true;
+    const nombre   = (form.nombre?.value   || '').trim();
+    const telefono = (form.telefono?.value || '').trim();
+    const zona     = (form.zona?.value     || '').trim();
 
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
+    const msg =
+      `Hola Digital View, soy ${nombre}.\n` +
+      `WhatsApp: ${telefono}\n` +
+      `Inmobiliaria / Zona: ${zona}\n\n` +
+      `Quiero más info sobre las campañas.`;
 
-      if (res.ok) {
-        form.reset();
-        successMsg.classList.add('visible');
-        submitBtn.textContent = '¡Enviado!';
-        if (window.fbq) fbq('track', 'Lead');
-        if (window.gtag) gtag('event', 'generate_lead', { method: 'contact_form' });
-      } else {
-        submitBtn.textContent = 'Error — intentá de nuevo';
-        submitBtn.disabled = false;
-      }
-    } catch {
-      submitBtn.textContent = 'Error — intentá de nuevo';
-      submitBtn.disabled = false;
-    }
+    if (window.fbq) fbq('track', 'Lead');
+    if (window.gtag) gtag('event', 'generate_lead', { method: 'whatsapp_form' });
+
+    submitBtn.textContent = 'Abriendo WhatsApp...';
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    setTimeout(() => { submitBtn.textContent = 'Escribirnos por WhatsApp →'; }, 1500);
   });
 }

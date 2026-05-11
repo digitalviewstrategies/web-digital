@@ -514,6 +514,19 @@
           <div class="testimonial-card__highlight">Inmobiliaria referente en Nordelta</div>
         </div>
 
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__badge">@digitalviewagency</div>
+          <h3 class="testimonial-card__name">Inmobiliaria en Vicente López</h3>
+          <p class="testimonial-card__role">CABA y Zona Norte · Captación de propiedades y venta</p>
+          <ul class="testimonial-card__metrics">
+            <li><span class="metric-number">USD 530</span><span class="metric-label">invertidos en 1 mes</span></li>
+            <li><span class="metric-number">157</span><span class="metric-label">leads generados</span></li>
+            <li><span class="metric-number">17</span><span class="metric-label">visitas</span></li>
+            <li><span class="metric-number">1</span><span class="metric-label">operación cerrada</span></li>
+          </ul>
+          <div class="testimonial-card__highlight">ROI positivo en el primer mes</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -607,25 +620,21 @@
           </div>
         </div>
         <div class="contacto__right reveal">
-          <form class="form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <form class="form" id="contact-form">
             <div class="form__group">
               <label class="form__label" for="nombre">Nombre</label>
               <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
             </div>
             <div class="form__group">
-              <label class="form__label" for="email">Email</label>
-              <input class="form__input" type="email" id="email" name="email" placeholder="tu@email.com" required />
+              <label class="form__label" for="telefono">WhatsApp</label>
+              <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="+54 9 11 ..." required />
             </div>
             <div class="form__group">
-              <label class="form__label" for="telefono">Teléfono</label>
-              <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="+54 9 11 ..." />
+              <label class="form__label" for="zona">Inmobiliaria / Zona</label>
+              <input class="form__input" type="text" id="zona" name="zona" placeholder="Ej: Inmobiliaria X en Vicente López" required />
             </div>
-            <div class="form__group">
-              <label class="form__label" for="mensaje">Mensaje</label>
-              <textarea class="form__input form__textarea" id="mensaje" name="mensaje" placeholder="Contanos sobre tu inmobiliaria..." rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn--accent btn--full" id="submit-btn">Enviar mensaje →</button>
-            <p class="form__success" id="form-success">¡Mensaje enviado! Te contactamos pronto.</p>
+            <button type="submit" class="btn btn--accent btn--full" id="submit-btn">Escribirnos por WhatsApp →</button>
+            <p class="form__alt" style="text-align:center;margin-top:.75rem;font-size:.85rem;opacity:.7">o escribinos a <a href="mailto:digitalviewstrategies@gmail.com" style="color:inherit;text-decoration:underline">digitalviewstrategies@gmail.com</a></p>
           </form>
         </div>
       </div>
@@ -665,6 +674,11 @@
       <p class="footer__copy">© <span id="footer-year">2026</span> Digital View · Agencia de marketing digital para inmobiliarias · San Isidro, Buenos Aires, Argentina</p>
     </div>
   </footer>
+
+  <!-- ───── WHATSAPP FLOTANTE ───── -->
+  <a href="https://wa.me/5491170669425?text=Hola%20Digital%20View%2C%20quiero%20m%C3%A1s%20info" target="_blank" rel="noopener" class="wa-fab" aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
 
   <script src="script.js"></script>
 </body>
