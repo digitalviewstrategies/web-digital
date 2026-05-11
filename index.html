@@ -211,6 +211,7 @@
         <span class="logo__view"> view</span>
       </a>
       <nav class="nav" id="nav">
+        <a href="#simulador" class="nav__link">Simulador</a>
         <a href="#servicios" class="nav__link">Servicios</a>
         <a href="#proceso" class="nav__link">Proceso</a>
         <a href="#testimonios" class="nav__link">Testimonios</a>
@@ -252,6 +253,74 @@
       </div>
     </div>
     <div class="hero__line"></div>
+  </section>
+
+  <section class="simulador" id="simulador">
+    <div class="container">
+      <div class="simulador__head reveal">
+        <p class="section-tag">
+          <span class="live-dot"></span> En tiempo real
+        </p>
+        <h2 class="section-title">Simulá tu próximo mes</h2>
+        <p class="simulador__sub">Calculá cuántos leads, visitas y operaciones podés generar — con CPL reales de nuestras campañas activas.</p>
+      </div>
+
+      <div class="simulador__grid">
+
+        <!-- ── CALCULADORA ── -->
+        <div class="calc reveal">
+          <div class="calc__label">
+            <span>Tipo de campaña</span>
+          </div>
+          <div class="calc__tabs" role="tablist">
+            <button class="calc__tab is-active" data-cpl="6"    data-conv-visit="0.05" data-conv-op="0.01" data-name="Captación de propietarios">Captación venta</button>
+            <button class="calc__tab"           data-cpl="0.56" data-conv-visit="0.10" data-conv-op="0.01" data-name="Captación alquiler">Captación alquiler</button>
+            <button class="calc__tab"           data-cpl="1.08" data-conv-visit="0.08" data-conv-op="0.01" data-name="Búsqueda de compradores">Venta</button>
+          </div>
+
+          <div class="calc__label calc__label--row">
+            <span>Inversión mensual</span>
+            <strong class="calc__budget-display">USD <span id="budget-val">500</span></strong>
+          </div>
+          <input type="range" class="calc__slider" id="budget-slider" min="100" max="5000" step="50" value="500" aria-label="Inversión mensual en USD">
+          <div class="calc__slider-marks">
+            <span>100</span><span>1.000</span><span>2.500</span><span>5.000</span>
+          </div>
+
+          <div class="calc__results">
+            <div class="calc__metric">
+              <span class="calc__metric-num" data-target="0" id="r-leads">0</span>
+              <span class="calc__metric-label">leads estimados / mes</span>
+            </div>
+            <div class="calc__metric calc__metric--alt">
+              <span class="calc__metric-num" id="r-visitas">0</span>
+              <span class="calc__metric-label">visitas / mes</span>
+            </div>
+            <div class="calc__metric calc__metric--alt">
+              <span class="calc__metric-num" id="r-ops">0</span>
+              <span class="calc__metric-label">operaciones potenciales</span>
+            </div>
+          </div>
+
+          <p class="calc__disclaimer">* Estimaciones basadas en CPL promedio de campañas activas en CABA y Corredor Norte. Los resultados varían según zona, ticket y oferta.</p>
+          <a href="#contacto" class="btn btn--accent calc__cta">Quiero estos números →</a>
+        </div>
+
+        <!-- ── LEADS EN VIVO ── -->
+        <div class="liveleads reveal">
+          <div class="liveleads__header">
+            <div class="liveleads__title">
+              <span class="live-dot"></span>
+              <span>Leads recientes</span>
+            </div>
+            <span class="liveleads__counter" id="live-counter">+1.500 este mes</span>
+          </div>
+          <div class="liveleads__feed" id="live-feed" aria-live="polite"></div>
+          <div class="liveleads__fade"></div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <!-- ───── EL PROBLEMA ───── -->

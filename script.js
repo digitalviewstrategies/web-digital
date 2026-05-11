@@ -1,3 +1,117 @@
+/* ═══════════════════════════════════════════
+   SIMULADOR — Calculadora de leads
+   ═══════════════════════════════════════════ */
+(() => {
+  const tabs    = document.querySelectorAll('.calc__tab');
+  const slider  = document.getElementById('budget-slider');
+  const budget  = document.getElementById('budget-val');
+  const rLeads  = document.getElementById('r-leads');
+  const rVis    = document.getElementById('r-visitas');
+  const rOps    = document.getElementById('r-ops');
+  if (!slider || !tabs.length) return;
+
+  let cpl = 6, convVisit = 0.05, convOp = 0.01;
+
+  const fmt = n => n.toLocaleString('es-AR');
+  const animateNum = (el, to) => {
+    const from = parseInt(el.textContent.replace(/\D/g,'')) || 0;
+    const dur = 600, t0 = performance.now();
+    const tick = t => {
+      const p = Math.min(1, (t - t0) / dur);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(from + (to - from) * ease));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const recalc = () => {
+    const b = parseInt(slider.value);
+    budget.textContent = fmt(b);
+    const fill = ((b - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.setProperty('--fill', fill + '%');
+
+    const leads = Math.round(b / cpl);
+    const vis   = Math.round(leads * convVisit);
+    const ops   = Math.max(0, Math.round(leads * convOp));
+
+    animateNum(rLeads, leads);
+    animateNum(rVis, vis);
+    animateNum(rOps, ops);
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      cpl       = parseFloat(tab.dataset.cpl);
+      convVisit = parseFloat(tab.dataset.convVisit);
+      convOp    = parseFloat(tab.dataset.convOp);
+      recalc();
+    });
+  });
+  slider.addEventListener('input', recalc);
+  recalc();
+})();
+
+/* ═══════════════════════════════════════════
+   LEADS EN VIVO — Feed animado
+   ═══════════════════════════════════════════ */
+(() => {
+  const feed = document.getElementById('live-feed');
+  if (!feed) return;
+
+  const leads = [
+    { name: 'Alejandra M.',  msg: '3 ambientes con cochera en San Isidro',  source: 'ig' },
+    { name: 'Mariano J.',    msg: 'Casa en San Isidro',                     source: 'fb' },
+    { name: 'Luciana S.',    msg: 'Casa en Vicente López',                  source: 'ig' },
+    { name: 'Pablo V.',      msg: 'Quiere vender su casa en Vicente López', source: 'ig' },
+    { name: 'Milagros F.',   msg: 'Quiere vender su casa en Tigre',         source: 'fb' },
+    { name: 'Silvana M.',    msg: 'Quiere vender su casa en CABA',          source: 'ig' },
+    { name: 'Liliana T.',    msg: 'Departamento 4 ambientes en CABA',       source: 'ig' },
+  ];
+
+  const initials = name => name.split(' ').map(s => s[0]).join('').slice(0,2).toUpperCase();
+  const sourceLabel = s => s === 'ig' ? 'Instagram' : 'Facebook';
+  const times = ['justo ahora', 'hace 1 min', 'hace 3 min', 'hace 5 min', 'hace 8 min', 'hace 12 min'];
+
+  let i = 0;
+  const MAX = 5;
+
+  const addLead = () => {
+    const lead = leads[i % leads.length];
+    i++;
+    const card = document.createElement('article');
+    card.className = 'lead-card';
+    card.innerHTML = `
+      <div class="lead-card__avatar">${initials(lead.name)}</div>
+      <div class="lead-card__body">
+        <p class="lead-card__name">${lead.name}</p>
+        <p class="lead-card__msg">${lead.msg}</p>
+      </div>
+      <div class="lead-card__meta">
+        <span class="lead-card__source lead-card__source--${lead.source}">${sourceLabel(lead.source)}</span>
+        <span class="lead-card__time">${times[Math.floor(Math.random() * 3)]}</span>
+      </div>
+    `;
+    feed.prepend(card);
+    while (feed.children.length > MAX) feed.lastElementChild.remove();
+  };
+
+  // Render initial 4
+  for (let k = 0; k < 4; k++) addLead();
+
+  // Only animate when section is visible
+  let interval = null;
+  const start = () => { if (!interval) interval = setInterval(addLead, 3500); };
+  const stop  = () => { clearInterval(interval); interval = null; };
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? start() : stop());
+  }, { threshold: 0.2 });
+  io.observe(feed);
+})();
+
 /* ─── Tracking clicks WhatsApp ─── */
 document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
   el.addEventListener('click', () => {
