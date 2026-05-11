@@ -1,3 +1,15 @@
+/* ─── Tracking clicks WhatsApp ─── */
+document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+  el.addEventListener('click', () => {
+    if (window.fbq) fbq('track', 'Contact');
+    if (window.gtag) gtag('event', 'click_whatsapp');
+  });
+});
+
+/* ─── Año dinámico footer ─── */
+const yearEl = document.getElementById('footer-year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 /* ─── Navbar scroll effect ─── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -66,6 +78,8 @@ if (form) {
         form.reset();
         successMsg.classList.add('visible');
         submitBtn.textContent = '¡Enviado!';
+        if (window.fbq) fbq('track', 'Lead');
+        if (window.gtag) gtag('event', 'generate_lead', { method: 'contact_form' });
       } else {
         submitBtn.textContent = 'Error — intentá de nuevo';
         submitBtn.disabled = false;

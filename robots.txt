@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://digitalviewstrategies.com/sitemap.xml
+
+# Crawl-delay opcional
+Crawl-delay: 1
