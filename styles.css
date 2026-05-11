@@ -811,6 +811,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .calc__disclaimer { font-size: .72rem; color: rgba(255,255,255,.4); line-height: 1.5; }
 .calc__cta { align-self: flex-start; margin-top: 4px; }
+.calc__ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.calc__ctas .calc__cta { width: 100%; text-align: center; align-self: stretch; }
+.btn--ghost {
+  background: transparent; color: var(--text-primary, #fff);
+  border: 1.5px solid rgba(255,255,255,.2);
+}
+.btn--ghost:hover { border-color: var(--lime); color: var(--lime); }
+.calc__cta--alt { font-weight: 500; }
 
 /* ── Live leads feed ── */
 .liveleads {

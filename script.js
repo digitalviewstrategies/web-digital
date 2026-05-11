@@ -25,6 +25,8 @@
     requestAnimationFrame(tick);
   };
 
+  let lastSnapshot = { b: 0, leads: 0, vis: 0, opsLo: 0, opsHi: 0, campaign: 'Captación venta' };
+
   const recalc = () => {
     const b = parseInt(slider.value);
     budget.textContent = fmt(b);
@@ -33,11 +35,16 @@
 
     const leads = Math.round(b / cpl);
     const vis   = Math.round(leads * convVisit);
-    const ops   = Math.max(0, Math.round(leads * convOp));
+    const opsRaw = leads * convOp;
+    const opsLo = Math.max(0, Math.floor(opsRaw * 0.7));
+    const opsHi = Math.max(1, Math.ceil(opsRaw * 1.3));
+
+    const activeTab = document.querySelector('.calc__tab.is-active');
+    lastSnapshot = { b, leads, vis, opsLo, opsHi, campaign: activeTab ? activeTab.textContent.trim() : 'Captación venta' };
 
     animateNum(rLeads, leads);
     animateNum(rVis, vis);
-    animateNum(rOps, ops);
+    if (rOps) rOps.textContent = opsLo === opsHi ? fmt(opsLo) : `${fmt(opsLo)}–${fmt(opsHi)}`;
   };
 
   tabs.forEach(tab => {
@@ -52,6 +59,27 @@
   });
   slider.addEventListener('input', recalc);
   recalc();
+
+  /* CTA: enviar reporte por WhatsApp */
+  const reportBtn = document.getElementById('calc-report-wa');
+  if (reportBtn) {
+    reportBtn.addEventListener('click', e => {
+      e.preventDefault();
+      const s = lastSnapshot;
+      const opsTxt = s.opsLo === s.opsHi ? `${s.opsLo}` : `${s.opsLo} a ${s.opsHi}`;
+      const msg =
+        `Hola Digital View, quiero más info sobre estos números:\n\n` +
+        `📊 Campaña: ${s.campaign}\n` +
+        `💰 Inversión: USD ${fmt(s.b)} / mes\n` +
+        `👥 Leads estimados: ${fmt(s.leads)}\n` +
+        `🏠 Visitas: ${fmt(s.vis)}\n` +
+        `✅ Operaciones potenciales: ${opsTxt}\n\n` +
+        `¿Cómo podemos arrancar?`;
+      if (window.fbq) fbq('track', 'Lead');
+      if (window.gtag) gtag('event', 'generate_lead', { method: 'simulator_whatsapp' });
+      window.open(`https://wa.me/5491170669425?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
 })();
 
 /* ═══════════════════════════════════════════
