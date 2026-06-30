@@ -1,226 +1,366 @@
-/* ═══════════════════════════════════════════
-   SIMULADOR — Calculadora de leads
-   ═══════════════════════════════════════════ */
-(() => {
-  const tabs    = document.querySelectorAll('.calc__tab');
-  const slider  = document.getElementById('budget-slider');
-  const budget  = document.getElementById('budget-val');
-  const rLeads  = document.getElementById('r-leads');
-  const rVis    = document.getElementById('r-visitas');
-  const rOps    = document.getElementById('r-ops');
-  if (!slider || !tabs.length) return;
+/* ═══════════════════════════════════════════════════
+   Digital View — Home v1
+   Vanilla JS · Astro-portable
+═══════════════════════════════════════════════════ */
 
-  let cpl = 6, convVisit = 0.05, convOp = 0.01;
+/* ──────────────────────────────────────────────────
+   00 · NAV HEIGHT — keeps the hero exactly 100svh minus nav
+─────────────────────────────────────────────────── */
+(function navHeight(){
+  const nav = document.getElementById('nav');
+  if(!nav) return;
+  function set(){
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  }
+  window.addEventListener('resize', set, {passive:true});
+  set();
+})();
 
-  const fmt = n => n.toLocaleString('es-AR');
-  const animateNum = (el, to) => {
-    const from = parseInt(el.textContent.replace(/\D/g,'')) || 0;
-    const dur = 600, t0 = performance.now();
-    const tick = t => {
-      const p = Math.min(1, (t - t0) / dur);
-      const ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(Math.round(from + (to - from) * ease));
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+/* ──────────────────────────────────────────────────
+   01 · SIMULATOR
+   tabs → set CPL · slider → invest · derive KPIs
+─────────────────────────────────────────────────── */
+(function simulator(){
+  const tabs    = document.querySelectorAll('.tab');
+  const slider  = document.getElementById('invest');
+  const investV = document.getElementById('investV');
+  const kLeads  = document.getElementById('kLeads');
+  const kVisit  = document.getElementById('kVisit');
+  const kOps    = document.getElementById('kOps');
+
+  if(!slider) return;
+
+  let cpl = 6.00;
+
+  // visit & ops conversion by campaign type
+  const conv = {
+    captacion: { visit: 0.10, ops: 0.125 }, // captación venta = listings
+    venta:     { visit: 0.18, ops: 0.10 },
+    alquiler:  { visit: 0.22, ops: 0.18 },
   };
+  let key = 'captacion';
 
-  let lastSnapshot = { b: 0, leads: 0, vis: 0, opsLo: 0, opsHi: 0, campaign: 'Captación venta' };
+  function format(n){
+    return n.toLocaleString('es-AR');
+  }
 
-  const recalc = () => {
-    const b = parseInt(slider.value);
-    budget.textContent = fmt(b);
-    const fill = ((b - slider.min) / (slider.max - slider.min)) * 100;
-    slider.style.setProperty('--fill', fill + '%');
+  function animateNumber(el, target){
+    const start = parseInt(el.textContent.replace(/\./g,''), 10) || 0;
+    const dur = 380;
+    const t0 = performance.now();
+    function step(t){
+      const k = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - k, 3);
+      const v = Math.round(start + (target - start) * eased);
+      el.textContent = format(v);
+      if(k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
 
-    const leads = Math.round(b / cpl);
-    const vis   = Math.round(leads * convVisit);
-    const opsRaw = leads * convOp;
-    const opsLo = Math.max(0, Math.floor(opsRaw * 0.7));
-    const opsHi = Math.max(1, Math.ceil(opsRaw * 1.3));
+  function recompute(){
+    const inv = parseInt(slider.value, 10);
+    investV.textContent = format(inv);
+    // update slider fill
+    const p = ((inv - 400) / (5000 - 400)) * 100;
+    slider.style.setProperty('--p', p + '%');
 
-    const activeTab = document.querySelector('.calc__tab.is-active');
-    lastSnapshot = { b, leads, vis, opsLo, opsHi, campaign: activeTab ? activeTab.textContent.trim() : 'Captación venta' };
+    const leads = Math.round(inv / cpl);
+    const c = conv[key];
+    const visits = Math.round(leads * c.visit);
+    const ops = Math.max(0, Math.round(visits * c.ops));
 
-    animateNum(rLeads, leads);
-    animateNum(rVis, vis);
-    if (rOps) rOps.textContent = opsLo === opsHi ? fmt(opsLo) : `${fmt(opsLo)}–${fmt(opsHi)}`;
-  };
+    animateNumber(kLeads, leads);
+    animateNumber(kVisit, visits);
+    animateNumber(kOps, ops);
+  }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      cpl       = parseFloat(tab.dataset.cpl);
-      convVisit = parseFloat(tab.dataset.convVisit);
-      convOp    = parseFloat(tab.dataset.convOp);
-      recalc();
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+      cpl = parseFloat(t.dataset.cpl);
+      key = t.dataset.key;
+      recompute();
     });
   });
-  slider.addEventListener('input', recalc);
-  recalc();
 
-  /* CTA: enviar reporte por WhatsApp */
-  const reportBtn = document.getElementById('calc-report-wa');
-  if (reportBtn) {
-    reportBtn.addEventListener('click', e => {
-      e.preventDefault();
-      const s = lastSnapshot;
-      const opsTxt = s.opsLo === s.opsHi ? `${s.opsLo}` : `${s.opsLo} a ${s.opsHi}`;
-      const msg =
-        `Hola Digital View, quiero más info sobre estos números:\n\n` +
-        `📊 Campaña: ${s.campaign}\n` +
-        `💰 Inversión: USD ${fmt(s.b)} / mes\n` +
-        `👥 Leads estimados: ${fmt(s.leads)}\n` +
-        `🏠 Visitas: ${fmt(s.vis)}\n` +
-        `✅ Operaciones potenciales: ${opsTxt}\n\n` +
-        `¿Cómo podemos arrancar?`;
-      if (window.fbq) fbq('track', 'Lead');
-      if (window.gtag) gtag('event', 'generate_lead', { method: 'simulator_whatsapp' });
-      window.open(`https://wa.me/5491170669425?text=${encodeURIComponent(msg)}`, '_blank');
+  slider.addEventListener('input', recompute);
+  recompute();
+})();
+
+/* ──────────────────────────────────────────────────
+   02 · LEAD FEED
+   Realistic-looking leads stream in.
+─────────────────────────────────────────────────── */
+(function leadFeed(){
+  const list = document.getElementById('feedList');
+  const counter = document.getElementById('leadsCount');
+  const liveLeads = document.getElementById('liveLeads');
+  if(!list) return;
+
+  const names = [
+    'Lautaro G.', 'Sofía B.', 'Tomás R.', 'Camila V.', 'Mateo N.', 'Mariana L.',
+    'Federico P.', 'Lucía D.', 'Joaquín M.', 'Florencia S.', 'Bruno T.', 'Valentina A.',
+    'Agustín C.', 'Renata O.', 'Maximiliano F.', 'Delfina H.', 'Iván K.', 'Catalina E.'
+  ];
+  const wants = [
+    'Quiere vender su casa en Vicente López',
+    'Busca depto 2 amb en Nordelta',
+    'Consulta por PH en Belgrano',
+    'Tasación de propiedad en San Isidro',
+    'Alquiler temporario en Pilar',
+    'Quiere captar para venta en Tigre',
+    'Interesado en lotes en Puertos del Lago',
+    'Busca local comercial en CABA Norte',
+    'Tasación urgente en Olivos',
+    'Quiere vender su casa en Martínez',
+    'Consulta por cochera en Recoleta',
+    'Busca 3 amb con cochera en Núñez',
+  ];
+  const sources = [
+    {k:'IG', cls:'ig'},
+    {k:'IG', cls:'ig'},
+    {k:'IG', cls:'ig'},
+    {k:'FB', cls:'fb'},
+  ];
+  const times = ['hace 1 min','hace 3 min','hace 6 min','hace 11 min','hace 18 min','hace 27 min','hace 41 min','hace 1 h','hace 2 h'];
+
+  let counterVal = 1547;
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+  function makeLead(index, isNew){
+    const li = document.createElement('li');
+    li.className = 'feed-li' + (isNew ? ' fli-new' : '');
+    const num = String(counterVal - index).padStart(4,'0');
+    const src = pick(sources);
+    li.innerHTML = `
+      <span class="fli-num">#${num}</span>
+      <span class="fli-body">
+        <span class="fli-name">${pick(names)}</span>
+        <span class="fli-want">${pick(wants)}</span>
+      </span>
+      <span class="fli-meta">
+        <span class="fli-src ${src.cls}">${src.k}</span>
+        <span class="fli-time">${isNew ? 'recién' : pick(times)}</span>
+      </span>
+    `;
+    return li;
+  }
+
+  // initial fill
+  for(let i = 0; i < 6; i++){
+    list.appendChild(makeLead(i, false));
+  }
+
+  // stream
+  let feedTimer = null;
+  function startFeed(){
+    if(feedTimer) clearInterval(feedTimer);
+    const ms = window.__feedInterval || 4200;
+    feedTimer = setInterval(tick, ms);
+  }
+  function tick(){
+    counterVal++;
+    if(counter) counter.textContent = counterVal.toLocaleString('es-AR');
+    if(liveLeads) liveLeads.textContent = counterVal.toLocaleString('es-AR');
+    const newLead = makeLead(0, true);
+    list.insertBefore(newLead, list.firstChild);
+    // drop the last
+    if(list.children.length > 7){
+      list.lastElementChild.remove();
+    }
+    // strip the "new" marker after a beat
+    setTimeout(() => newLead.classList.remove('fli-new'), 3200);
+  }
+  startFeed();
+  window.__restartFeed = startFeed;
+})();
+
+/* ──────────────────────────────────────────────────
+   03 · TEAM ROBOT — lateral reveal on scroll
+   Mask reveals as the section enters the viewport.
+─────────────────────────────────────────────────── */
+(function teamReveal(){
+  const team = document.getElementById('equipo');
+  const robot = document.getElementById('teamRobot');
+  if(!team || !robot) return;
+  const target = robot.parentElement; // .side-robot — sets var for both image mask + bar
+
+  function update(){
+    const rect = team.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // progress 0 → 1 across the section's traverse of the viewport
+    // (the robot "prints" gradually while you scroll through Equipo)
+    const total = rect.height + vh * 0.4;
+    const passed = vh * 0.85 - rect.top;
+    let p = passed / total;
+    p = Math.max(0, Math.min(1, p));
+    // map 0–1 → 5–100%
+    const pct = 5 + p * 95;
+    target.style.setProperty('--reveal', pct + '%');
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ──────────────────────────────────────────────────
+   04 · CONTACT FORM — easter egg dancing robot
+─────────────────────────────────────────────────── */
+(function contactForm(){
+  const form = document.getElementById('contactForm');
+  const overlay = document.getElementById('danceOverlay');
+  const closeBtn = document.getElementById('closeDance');
+  if(!form || !overlay) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // simple required check
+    const ok = ['cn','ce','cm'].every(id => {
+      const el = document.getElementById(id);
+      const v = el && el.value.trim();
+      if(!v){ el && el.focus(); return false; }
+      return true;
+    });
+    if(!ok) return;
+    overlay.hidden = false;
+    form.reset();
+  });
+
+  closeBtn.addEventListener('click', () => { overlay.hidden = true; });
+  overlay.addEventListener('click', (e) => {
+    if(e.target === overlay) overlay.hidden = true;
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && !overlay.hidden) overlay.hidden = true;
+  });
+})();
+
+/* ──────────────────────────────────────────────────
+   05 · NAV — active link based on scroll position
+─────────────────────────────────────────────────── */
+(function navActive(){
+  const links = document.querySelectorAll('.nav-links a');
+  if(!links.length) return;
+  const sections = [...links].map(a => {
+    const id = a.getAttribute('href').slice(1);
+    return { a, el: document.getElementById(id) };
+  }).filter(x => x.el);
+
+  function onScroll(){
+    const y = window.scrollY + 120;
+    let active = null;
+    for(const s of sections){
+      if(s.el.offsetTop <= y) active = s;
+    }
+    links.forEach(l => l.style.color = '');
+    if(active){
+      active.a.style.color = 'var(--ink)';
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+/* ──────────────────────────────────────────────────
+   06 · TWEAKS PANEL — dark/light + feed pace
+   Lives only when host activates edit mode.
+─────────────────────────────────────────────────── */
+(function tweaks(){
+  const panel = document.getElementById('tweaksPanel');
+  const closeBtn = document.getElementById('twClose');
+  if(!panel) return;
+
+  const defaults = (typeof TWEAK_DEFAULTS !== 'undefined') ? TWEAK_DEFAULTS : { theme:'dark', feedRate:'fast' };
+  const state = Object.assign({}, defaults);
+  const navThemeBtn = document.getElementById('themeToggle');
+  try{ const ls = localStorage.getItem('dvTheme'); if(ls === 'light' || ls === 'dark') state.theme = ls; }catch(_){}
+
+  function applyTheme(t){
+    if(t === 'light') document.body.setAttribute('data-theme', 'light');
+    else document.body.removeAttribute('data-theme');
+    // swap themeable client logos (white marks in dark, dark marks in light)
+    document.querySelectorAll('#clientLogos .cl-swap').forEach(img => {
+      const src = (t === 'light') ? img.dataset.light : img.dataset.dark;
+      if(src && img.getAttribute('src') !== src) img.setAttribute('src', src);
     });
   }
-})();
+  function applyFeedRate(r){
+    window.__feedInterval = (r === 'slow') ? 7000 : 4200;
+    if(typeof window.__restartFeed === 'function') window.__restartFeed();
+  }
 
-/* ═══════════════════════════════════════════
-   LEADS EN VIVO — Feed animado
-   ═══════════════════════════════════════════ */
-(() => {
-  const feed = document.getElementById('live-feed');
-  if (!feed) return;
-
-  const leads = [
-    { name: 'Alejandra M.',  msg: '3 ambientes con cochera en San Isidro',  source: 'ig' },
-    { name: 'Mariano J.',    msg: 'Casa en San Isidro',                     source: 'fb' },
-    { name: 'Luciana S.',    msg: 'Casa en Vicente López',                  source: 'ig' },
-    { name: 'Pablo V.',      msg: 'Quiere vender su casa en Vicente López', source: 'ig' },
-    { name: 'Milagros F.',   msg: 'Quiere vender su casa en Tigre',         source: 'fb' },
-    { name: 'Silvana M.',    msg: 'Quiere vender su casa en CABA',          source: 'ig' },
-    { name: 'Liliana T.',    msg: 'Departamento 4 ambientes en CABA',       source: 'ig' },
-  ];
-
-  const initials = name => name.split(' ').map(s => s[0]).join('').slice(0,2).toUpperCase();
-  const sourceLabel = s => s === 'ig' ? 'Instagram' : 'Facebook';
-  const times = ['justo ahora', 'hace 1 min', 'hace 3 min', 'hace 5 min', 'hace 8 min', 'hace 12 min'];
-
-  let i = 0;
-  const MAX = 5;
-
-  const addLead = () => {
-    const lead = leads[i % leads.length];
-    i++;
-    const card = document.createElement('article');
-    card.className = 'lead-card';
-    card.innerHTML = `
-      <div class="lead-card__avatar">${initials(lead.name)}</div>
-      <div class="lead-card__body">
-        <p class="lead-card__name">${lead.name}</p>
-        <p class="lead-card__msg">${lead.msg}</p>
-      </div>
-      <div class="lead-card__meta">
-        <span class="lead-card__source lead-card__source--${lead.source}">${sourceLabel(lead.source)}</span>
-        <span class="lead-card__time">${times[Math.floor(Math.random() * 3)]}</span>
-      </div>
-    `;
-    feed.prepend(card);
-    while (feed.children.length > MAX) feed.lastElementChild.remove();
-  };
-
-  // Render initial 4
-  for (let k = 0; k < 4; k++) addLead();
-
-  // Only animate when section is visible
-  let interval = null;
-  const start = () => { if (!interval) interval = setInterval(addLead, 3500); };
-  const stop  = () => { clearInterval(interval); interval = null; };
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => e.isIntersecting ? start() : stop());
-  }, { threshold: 0.2 });
-  io.observe(feed);
-})();
-
-/* ─── Tracking clicks WhatsApp ─── */
-document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-  el.addEventListener('click', () => {
-    if (window.fbq) fbq('track', 'Contact');
-    if (window.gtag) gtag('event', 'click_whatsapp');
-  });
-});
-
-/* ─── Año dinámico footer ─── */
-const yearEl = document.getElementById('footer-year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-/* ─── Navbar scroll effect ─── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-/* ─── Hamburger menu ─── */
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('nav');
-
-hamburger.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('open');
-  hamburger.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-
-nav.querySelectorAll('.nav__link').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    hamburger.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-
-/* ─── Scroll reveal ─── */
-const revealObserver = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+  function apply(){
+    applyTheme(state.theme);
+    applyFeedRate(state.feedRate);
+    panel.querySelectorAll('.tw-radio').forEach(group => {
+      const key = group.dataset.tweak;
+      group.querySelectorAll('button').forEach(b => {
+        b.classList.toggle('is-active', b.dataset.value === state[key]);
+      });
     });
-  },
-  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-);
+    if(navThemeBtn){
+      const isLight = state.theme === 'light';
+      navThemeBtn.setAttribute('aria-pressed', String(isLight));
+      const ico = navThemeBtn.querySelector('.tt-ico');
+      const lbl = navThemeBtn.querySelector('.tt-lbl');
+      if(ico) ico.textContent = isLight ? '○' : '●';
+      if(lbl) lbl.textContent = isLight ? 'Light' : 'Dark';
+    }
+  }
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  function persist(patch){
+    Object.assign(state, patch);
+    try{
+      window.parent.postMessage({type:'__edit_mode_set_keys', edits: patch}, '*');
+    }catch(_){}
+    if('theme' in patch){ try{ localStorage.setItem('dvTheme', state.theme); }catch(_){} }
+    apply();
+  }
 
-/* ─── Stagger children inside grids ─── */
-document.querySelectorAll('.servicios__grid, .testimonios__grid').forEach(grid => {
-  grid.querySelectorAll('.reveal').forEach((card, i) => {
-    card.style.transitionDelay = `${i * 0.08}s`;
+  panel.querySelectorAll('.tw-radio').forEach(group => {
+    const key = group.dataset.tweak;
+    group.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => {
+        persist({ [key]: b.dataset.value });
+      });
+    });
   });
-});
 
-/* ─── Contact form → WhatsApp ─── */
-const form = document.getElementById('contact-form');
-const submitBtn = document.getElementById('submit-btn');
-const WA_NUMBER = '5491170669425';
+  // nav theme toggle — flips whole page theme like the tweak
+  if(navThemeBtn){
+    navThemeBtn.addEventListener('click', () => {
+      persist({ theme: state.theme === 'light' ? 'dark' : 'light' });
+    });
+  }
 
-if (form) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const nombre   = (form.nombre?.value   || '').trim();
-    const telefono = (form.telefono?.value || '').trim();
-    const zona     = (form.zona?.value     || '').trim();
-
-    const msg =
-      `Hola Digital View, soy ${nombre}.\n` +
-      `WhatsApp: ${telefono}\n` +
-      `Inmobiliaria / Zona: ${zona}\n\n` +
-      `Quiero más info sobre las campañas.`;
-
-    if (window.fbq) fbq('track', 'Lead');
-    if (window.gtag) gtag('event', 'generate_lead', { method: 'whatsapp_form' });
-
-    submitBtn.textContent = 'Abriendo WhatsApp...';
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-    setTimeout(() => { submitBtn.textContent = 'Escribirnos por WhatsApp →'; }, 1500);
+  // Host protocol
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if(!d || !d.type) return;
+    if(d.type === '__activate_edit_mode'){
+      panel.classList.add('is-open');
+      panel.setAttribute('aria-hidden','false');
+    } else if(d.type === '__deactivate_edit_mode'){
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden','true');
+    }
   });
-}
+
+  closeBtn.addEventListener('click', () => {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden','true');
+    try{
+      window.parent.postMessage({type:'__edit_mode_dismissed'}, '*');
+    }catch(_){}
+  });
+
+  apply();
+
+  try{
+    window.parent.postMessage({type:'__edit_mode_available'}, '*');
+  }catch(_){}
+})();

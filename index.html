@@ -55,8 +55,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.youtube.com" />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 
   <!-- ───── GOOGLE ANALYTICS 4 ───── -->
@@ -201,498 +201,797 @@
   }
   </script>
 </head>
+
 <body>
 
-  <!-- ───── NAVBAR ───── -->
-  <header class="navbar" id="navbar">
-    <div class="container navbar__inner">
-      <a href="#hero" class="logo">
-        <span class="logo__digital">Digital</span>
-        <span class="logo__view"> view</span>
-      </a>
-      <nav class="nav" id="nav">
-        <a href="#simulador" class="nav__link">Simulador</a>
-        <a href="#servicios" class="nav__link">Servicios</a>
-        <a href="#proceso" class="nav__link">Proceso</a>
-        <a href="#testimonios" class="nav__link">Testimonios</a>
-        <a href="#equipo" class="nav__link">Equipo</a>
-        <a href="#contacto" class="nav__link">Contacto</a>
-      </nav>
-      <a href="#contacto" class="btn btn--primary nav__cta">Trabajemos juntos</a>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ───── HERO ───── -->
-  <section class="hero" id="hero">
-    <div class="container hero__inner">
-      <div class="hero__content reveal">
-        <h1 class="hero__headline">
-          Tu inmobiliaria<br />no necesita<br />más suerte.
-        </h1>
-        <p class="hero__sub">
-          Necesita un sistema que traiga prospectos todos los días<br />
-          — sin depender del boca a boca.
-        </p>
-        <a href="#contacto" class="btn btn--accent hero__cta">Quiero más leads →</a>
-      </div>
-      <div class="hero__stats reveal reveal--delay">
-        <div class="stat stat--blue">
-          <span class="stat__number">+20</span>
-          <span class="stat__label">Inmobiliarias confían en DV</span>
-        </div>
-        <div class="stat stat--dark">
-          <span class="stat__number stat__number--lime">+1000M</span>
-          <span class="stat__label">Invertidos en pauta publicitaria</span>
-        </div>
-        <div class="stat stat--dark">
-          <span class="stat__label stat__label--bold">Decenas de propiedades<br /><em>vendidas y captadas</em></span>
-        </div>
-      </div>
-    </div>
-    <div class="hero__line"></div>
-  </section>
-
-  <section class="simulador" id="simulador">
-    <div class="container">
-      <div class="simulador__head reveal">
-        <p class="section-tag">
-          <span class="live-dot"></span> En tiempo real
-        </p>
-        <h2 class="section-title">Simulá tu próximo mes</h2>
-        <p class="simulador__sub">Calculá cuántos leads, visitas y operaciones podés generar — con CPL reales de nuestras campañas activas.</p>
-      </div>
-
-      <div class="simulador__grid">
-
-        <!-- ── CALCULADORA ── -->
-        <div class="calc reveal">
-          <div class="calc__label">
-            <span>Tipo de campaña</span>
-          </div>
-          <div class="calc__tabs" role="tablist">
-            <button class="calc__tab is-active" data-cpl="6"    data-conv-visit="0.05" data-conv-op="0.007" data-name="Captación de propietarios">Captación venta</button>
-            <button class="calc__tab"           data-cpl="0.56" data-conv-visit="0.10" data-conv-op="0.004" data-name="Alquiler">Alquiler</button>
-            <button class="calc__tab"           data-cpl="1.08" data-conv-visit="0.08" data-conv-op="0.006" data-name="Búsqueda de compradores">Venta</button>
-          </div>
-
-          <div class="calc__label calc__label--row">
-            <span>Inversión mensual</span>
-            <strong class="calc__budget-display">USD <span id="budget-val">500</span></strong>
-          </div>
-          <input type="range" class="calc__slider" id="budget-slider" min="400" max="5000" step="50" value="500" aria-label="Inversión mensual en USD">
-          <div class="calc__slider-marks">
-            <span style="left:0%">400</span><span style="left:23.9%">1.500</span><span style="left:56.5%">3.000</span><span style="left:100%">5.000</span>
-          </div>
-
-          <div class="calc__results">
-            <div class="calc__metric">
-              <span class="calc__metric-num" data-target="0" id="r-leads">0</span>
-              <span class="calc__metric-label">leads estimados / mes</span>
-            </div>
-            <div class="calc__metric calc__metric--alt">
-              <span class="calc__metric-num" id="r-visitas">0</span>
-              <span class="calc__metric-label">visitas / mes</span>
-            </div>
-            <div class="calc__metric calc__metric--alt">
-              <span class="calc__metric-num" id="r-ops">0</span>
-              <span class="calc__metric-label">operaciones potenciales</span>
-            </div>
-          </div>
-
-          <p class="calc__disclaimer">* Estimaciones basadas en CPL promedio de campañas activas en CABA y Corredor Norte. Los resultados varían según zona, ticket y oferta.</p>
-          <div class="calc__ctas">
-            <a href="#" id="calc-report-wa" class="btn btn--accent calc__cta">📲 Enviame este reporte por WhatsApp</a>
-            <a href="#contacto" class="btn btn--ghost calc__cta calc__cta--alt">Quiero hablar con un asesor →</a>
-          </div>
-        </div>
-
-        <!-- ── LEADS EN VIVO ── -->
-        <div class="liveleads reveal">
-          <div class="liveleads__header">
-            <div class="liveleads__title">
-              <span class="live-dot"></span>
-              <span>Leads recientes</span>
-            </div>
-            <span class="liveleads__counter" id="live-counter">+1.500 este mes</span>
-          </div>
-          <div class="liveleads__feed" id="live-feed" aria-live="polite"></div>
-          <div class="liveleads__fade"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── EL PROBLEMA ───── -->
-  <section class="problema" id="problema">
-    <div class="container">
-      <div class="problema__inner reveal">
-        <div class="problema__left">
-          <p class="section-tag">El problema</p>
-          <h2 class="problema__title">El boca a boca<br />no es una<br />estrategia</h2>
-          <p class="problema__subtitle">Es una esperanza.</p>
-        </div>
-        <div class="problema__right">
-          <ul class="problema__list">
-            <li class="problema__item">
-              <span class="problema__dot"></span>
-              Dependen de referidos. Cuando no llegan, el negocio se frena.
-            </li>
-            <li class="problema__item">
-              <span class="problema__dot"></span>
-              No controlan cuándo aparece el próximo comprador o propietario.
-            </li>
-            <li class="problema__item">
-              <span class="problema__dot"></span>
-              Sin un canal propio y predecible, están rehenes del boca a boca.
-            </li>
-          </ul>
-          <div class="problema__result">
-            <strong>El resultado:</strong> crecimiento impredecible, oportunidades perdidas, competencia que avanza.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── SERVICIOS ───── -->
-  <section class="servicios" id="servicios">
-    <div class="container">
-      <p class="section-tag reveal">Lo que hacemos</p>
-      <h2 class="section-title reveal">Nuestros servicios</h2>
-      <div class="servicios__grid">
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Análisis &amp; Estrategia</h3>
-          <p class="service-card__desc">Entendemos tu negocio, tu zona y el perfil de cliente que querés atraer. Detectamos oportunidades antes de ejecutar.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Planificación</h3>
-          <p class="service-card__desc">Organizamos la estrategia en un plan de acción concreto y calendarizado, previsible y medible en cada etapa.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Fotografía &amp; Videos</h3>
-          <p class="service-card__desc">Contenido visual de alta calidad: desde fotos profesionales hasta reels y muestras virtuales de propiedades.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Meta Ads</h3>
-          <p class="service-card__desc">Campañas en Facebook e Instagram con un único foco: generar consultas reales y leads de calidad, no solo clics.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Base de Datos</h3>
-          <p class="service-card__desc">Organizamos todos los contactos en una base de datos compartida (Sheets) para seguimiento claro de cada lead.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <h3 class="service-card__title">Análisis y Reportes</h3>
-          <p class="service-card__desc">Analizamos en profundidad cómo performó cada etapa y ajustamos lo necesario para seguir alcanzando objetivos.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── PROCESO ───── -->
-  <section class="proceso" id="proceso">
-    <div class="container">
-      <p class="section-tag reveal">Cómo trabajamos</p>
-      <h2 class="section-title reveal">Etapas</h2>
-      <div class="proceso__timeline">
-        <div class="proceso__step reveal">
-          <div class="proceso__dot"><span>01</span></div>
-          <h3 class="proceso__step-title">Análisis &amp; Estrategia</h3>
-          <p class="proceso__step-desc">Entendemos tu negocio, zona y cliente ideal.</p>
-        </div>
-        <div class="proceso__connector"></div>
-        <div class="proceso__step reveal">
-          <div class="proceso__dot"><span>02</span></div>
-          <h3 class="proceso__step-title">Planificación</h3>
-          <p class="proceso__step-desc">Definimos qué se comunica, cómo y para quién.</p>
-        </div>
-        <div class="proceso__connector"></div>
-        <div class="proceso__step reveal">
-          <div class="proceso__dot"><span>03</span></div>
-          <h3 class="proceso__step-title">Implementación</h3>
-          <p class="proceso__step-desc">Lanzamos campañas y contenidos orientados a generar consultas reales.</p>
-        </div>
-        <div class="proceso__connector"></div>
-        <div class="proceso__step reveal">
-          <div class="proceso__dot"><span>04</span></div>
-          <h3 class="proceso__step-title">Activación</h3>
-          <p class="proceso__step-desc">Optimizamos en tiempo real para bajar el costo por lead y mejorar calidad.</p>
-        </div>
-        <div class="proceso__connector"></div>
-        <div class="proceso__step reveal">
-          <div class="proceso__dot"><span>05</span></div>
-          <h3 class="proceso__step-title">Ajustes y Métricas</h3>
-          <p class="proceso__step-desc">Cada mes analizamos métricas y ajustamos para seguir creciendo.</p>
-        </div>
-      </div>
-      <div class="proceso__result reveal">
-        <p><strong>Resultado:</strong> Un flujo constante de compradores, vendedores y propietarios interesados — sin esperar a que alguien te recomiende.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── TESTIMONIOS ───── -->
-  <section class="testimonios" id="testimonios">
-    <div class="container">
-      <p class="section-tag reveal">Casos de éxito</p>
-      <h2 class="section-title reveal">Resultados reales</h2>
-      <div class="testimonios__grid">
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__badge">@digitalviewagency</div>
-          <h3 class="testimonial-card__name">Viviana Sasía</h3>
-          <p class="testimonial-card__role">Team Leader en ZipCode · <a href="https://instagram.com/viviana.sasia" target="_blank" rel="noopener">@viviana.sasia</a></p>
-          <ul class="testimonial-card__metrics">
-            <li><span class="metric-number">+1500</span><span class="metric-label">leads generados</span></li>
-            <li><span class="metric-number">900K U$S</span><span class="metric-label">captados</span></li>
-            <li><span class="metric-number">+100</span><span class="metric-label">visitas</span></li>
-            <li><span class="metric-number">5</span><span class="metric-label">ventas en 6 meses</span></li>
-          </ul>
-          <div class="testimonial-card__highlight">3500% vs. período anterior</div>
-        </div>
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__badge">@digitalviewagency</div>
-          <h3 class="testimonial-card__name">Jose M. Chaher</h3>
-          <p class="testimonial-card__role">Asesor en Soldati Vista · <a href="https://instagram.com/team_noia" target="_blank" rel="noopener">@team_noia</a></p>
-          <ul class="testimonial-card__metrics">
-            <li><span class="metric-number">+400</span><span class="metric-label">leads (últimos 90 días)</span></li>
-            <li><span class="metric-number">10 días</span><span class="metric-label">primera venta</span></li>
-            <li><span class="metric-number">+20</span><span class="metric-label">visitas</span></li>
-            <li><span class="metric-number">1400%</span><span class="metric-label">aumento de alcance</span></li>
-          </ul>
-          <div class="testimonial-card__highlight">633,3% de contactos generados</div>
-        </div>
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__badge">@digitalviewagency</div>
-          <h3 class="testimonial-card__name">Abitat</h3>
-          <p class="testimonial-card__role">Inmobiliaria en Nordelta y Puertos del Lago · <a href="https://instagram.com/somosabitat" target="_blank" rel="noopener">@somosabitat</a></p>
-          <ul class="testimonial-card__metrics">
-            <li><span class="metric-number">240</span><span class="metric-label">leads (últimos 90 días)</span></li>
-            <li><span class="metric-number">+10</span><span class="metric-label">visitas</span></li>
-            <li><span class="metric-number">1400%</span><span class="metric-label">aumento de alcance</span></li>
-            <li><span class="metric-number">633%</span><span class="metric-label">contactos generados</span></li>
-          </ul>
-          <div class="testimonial-card__highlight">Inmobiliaria referente en Nordelta</div>
-        </div>
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__badge">@digitalviewagency</div>
-          <h3 class="testimonial-card__name">Inmobiliaria en Vicente López</h3>
-          <p class="testimonial-card__role">CABA y Zona Norte · Captación de propiedades y venta</p>
-          <ul class="testimonial-card__metrics">
-            <li><span class="metric-number">USD 530</span><span class="metric-label">invertidos en 1 mes</span></li>
-            <li><span class="metric-number">157</span><span class="metric-label">leads generados</span></li>
-            <li><span class="metric-number">17</span><span class="metric-label">visitas</span></li>
-            <li><span class="metric-number">1</span><span class="metric-label">operación cerrada</span></li>
-          </ul>
-          <div class="testimonial-card__highlight">ROI positivo en el primer mes</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── VIDEO SALES LETTER ───── -->
-  <section class="vsl" id="vsl">
-    <div class="container">
-      <p class="section-tag reveal">Entendé el método</p>
-      <h2 class="section-title reveal">¿Por qué<br />Digital View?</h2>
-      <div class="vsl__wrapper reveal">
-        <div class="vsl__player">
-          <!-- Reemplazá VIDEO_ID con el ID real del video de YouTube -->
-          <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
-            title="Digital View — Por qué elegirnos"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── EQUIPO ───── -->
-  <section class="equipo" id="equipo">
-    <div class="container">
-      <p class="section-tag reveal">Las personas detrás del resultado</p>
-      <h2 class="section-title reveal">Nuestro equipo</h2>
-
-      <div class="equipo__socios">
-        <div class="team-card team-card--partner reveal">
-          <div class="team-card__avatar"><img src="Fotos equipo/Valentin.jpg" alt="Valentín — Socio y Área Comercial de Digital View" class="team-card__avatar-img" loading="lazy" width="200" height="200"></div>
-          <span class="team-card__badge">Socio</span>
-          <h3 class="team-card__name">Valentín</h3>
-          <p class="team-card__role">Área Comercial</p>
-        </div>
-        <div class="team-card team-card--partner reveal">
-          <div class="team-card__avatar"><img src="Fotos equipo/Nicolas.jpg" alt="Nicolás — Socio y Líder Creativo de Digital View" class="team-card__avatar-img" loading="lazy" width="200" height="200"></div>
-          <span class="team-card__badge">Socio</span>
-          <h3 class="team-card__name">Nicolás</h3>
-          <p class="team-card__role">Líder Creativo</p>
-        </div>
-      </div>
-
-      <div class="equipo__staff">
-        <div class="team-card reveal">
-          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Felipe.jpg" alt="Felipe — Media Buyer en Digital View" class="team-card__avatar-img" loading="lazy" width="200" height="200"></div>
-          <h3 class="team-card__name">Felipe</h3>
-          <p class="team-card__role">Media Buyer</p>
-        </div>
-        <div class="team-card reveal">
-          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Elias.jpg" alt="Elias — Project Manager en Digital View" class="team-card__avatar-img" loading="lazy" width="200" height="200"></div>
-          <h3 class="team-card__name">Elias</h3>
-          <p class="team-card__role">Project Manager</p>
-        </div>
-        <div class="team-card reveal">
-          <div class="team-card__avatar team-card__avatar--alt"><img src="Fotos equipo/Bautista.jpg" alt="Bautista — Project Manager en Digital View" class="team-card__avatar-img" loading="lazy" width="200" height="200"></div>
-          <h3 class="team-card__name">Bautista</h3>
-          <p class="team-card__role">Project Manager</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── CONTACTO ───── -->
-  <section class="contacto" id="contacto">
-    <div class="container">
-      <div class="contacto__inner">
-        <div class="contacto__left reveal">
-          <p class="section-tag">Hablemos</p>
-          <h2 class="contacto__title">Trabajemos<br />juntos</h2>
-          <p class="contacto__sub">Cualquier pregunta no dudes en consultarnos.</p>
-          <div class="contacto__info">
-            <a href="https://wa.me/5491170669425?text=Hola%20Digital%20View%2C%20quiero%20m%C3%A1s%20info" target="_blank" rel="noopener" class="contacto__link" aria-label="Escribinos por WhatsApp">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="contacto__icon"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              +54 9 11 7066-9425
-            </a>
-            <a href="https://instagram.com/digitalviewagency" target="_blank" rel="noopener" class="contacto__link" aria-label="Seguinos en Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="contacto__icon"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              @digitalviewagency
-            </a>
-            <a href="mailto:digitalviewstrategies@gmail.com" class="contacto__link" aria-label="Envianos un email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="contacto__icon"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              digitalviewstrategies@gmail.com
-            </a>
-            <address class="contacto__address" itemscope itemtype="https://schema.org/PostalAddress" style="font-style:normal;display:flex;flex-direction:column;gap:.25rem;margin-top:.5rem;font-size:.9rem;opacity:.85">
-              <span><strong>📍</strong> <span itemprop="addressLocality">San Isidro</span>, <span itemprop="addressRegion">Buenos Aires</span> · <span itemprop="addressCountry">Argentina</span></span>
-              <span><strong>🕒</strong> Lunes a Viernes · 8:00 a 18:00 hs</span>
-            </address>
-          </div>
-        </div>
-        <div class="contacto__right reveal">
-          <form class="form" id="contact-form">
-            <div class="form__group">
-              <label class="form__label" for="nombre">Nombre</label>
-              <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-            </div>
-            <div class="form__group">
-              <label class="form__label" for="telefono">WhatsApp</label>
-              <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="+54 9 11 ..." required />
-            </div>
-            <div class="form__group">
-              <label class="form__label" for="zona">Inmobiliaria / Zona</label>
-              <input class="form__input" type="text" id="zona" name="zona" placeholder="Ej: Inmobiliaria X en Vicente López" required />
-            </div>
-            <button type="submit" class="btn btn--accent btn--full" id="submit-btn">Escribirnos por WhatsApp →</button>
-            <p class="form__alt" style="text-align:center;margin-top:.75rem;font-size:.85rem;opacity:.7">o escribinos a <a href="mailto:digitalviewstrategies@gmail.com" style="color:inherit;text-decoration:underline">digitalviewstrategies@gmail.com</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───── FOOTER ───── -->
-  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
-    <meta itemprop="name" content="Digital View" />
-    <meta itemprop="url" content="https://digitalviewstrategies.com/" />
-    <div class="container footer__inner">
-      <a href="#hero" class="logo logo--footer" aria-label="Digital View - Inicio">
-        <span class="logo__digital">Digital</span>
-        <span class="logo__view"> view</span>
-      </a>
-      <nav class="footer__nav" aria-label="Navegación pie de página">
-        <a href="#servicios" class="footer__link">Servicios</a>
-        <a href="#proceso" class="footer__link">Proceso</a>
-        <a href="#testimonios" class="footer__link">Testimonios</a>
-        <a href="#equipo" class="footer__link">Equipo</a>
-        <a href="#contacto" class="footer__link">Contacto</a>
-        <a href="/blog/cpl-leads-inmobiliarios-2026/" class="footer__link">Blog</a>
-        <a href="/terminos/" class="footer__link">Términos y Condiciones</a>
-      </nav>
-      <nav class="footer__zones" aria-label="Zonas que cubrimos" style="display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;justify-content:center;margin:1rem 0;font-size:.85rem;opacity:.75">
-        <span style="opacity:.6">Zonas:</span>
-        <a href="/vicente-lopez/" class="footer__link">Vicente López</a>
-        <a href="/san-isidro/" class="footer__link">San Isidro</a>
-        <a href="/nordelta/" class="footer__link">Nordelta</a>
-        <a href="/tigre/" class="footer__link">Tigre</a>
-        <a href="/caba-norte/" class="footer__link">CABA Norte</a>
-      </nav>
-      <div class="footer__social" style="display:flex;gap:1rem;align-items:center">
-        <a href="https://www.instagram.com/digitalviewagency/" target="_blank" rel="noopener" itemprop="sameAs" aria-label="Instagram de Digital View" style="color:inherit">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/digital-view-agency/" target="_blank" rel="noopener" itemprop="sameAs" aria-label="LinkedIn de Digital View" style="color:inherit">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61557477811665" target="_blank" rel="noopener" itemprop="sameAs" aria-label="Facebook de Digital View" style="color:inherit">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="https://wa.me/5491170669425" target="_blank" rel="noopener" aria-label="WhatsApp de Digital View" style="color:inherit">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24z"/></svg>
-        </a>
-      </div>
-      <p class="footer__copy">© <span id="footer-year">2026</span> Digital View · Agencia de marketing digital para inmobiliarias · San Isidro, Buenos Aires, Argentina</p>
-    </div>
-  </footer>
-
-  <!-- ───── WHATSAPP FLOTANTE ───── -->
-  <a href="https://wa.me/5491170669425?text=Hola%20Digital%20View%2C%20quiero%20m%C3%A1s%20info" target="_blank" rel="noopener" class="wa-fab" aria-label="Escribinos por WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+<!-- ─────────────── NAV ─────────────── -->
+<header class="nav" id="nav" data-screen-label="00 Nav">
+  <a href="#top" class="nav-logo" aria-label="Digital View">
+    <span class="nav-robot" aria-hidden="true">
+      <img src="robot/idle.png" alt="" />
+    </span>
+    <span class="dv-mark"><span class="br">[</span>DV<span class="br">]</span></span>
   </a>
 
-  <script src="script.js"></script>
+  <nav class="nav-links" aria-label="Secciones">
+    <a href="#simulador"><span class="num">01</span> Simulador</a>
+    <a href="#servicios"><span class="num">02</span> Servicios</a>
+    <a href="#casos"><span class="num">03</span> Casos</a>
+    <a href="#equipo"><span class="num">04</span> Equipo</a>
+  </nav>
+
+  <div class="nav-right">
+    <span class="status"><span class="dot"></span>Operando</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+      <span class="tt-ico">●</span><span class="tt-lbl">Dark</span>
+    </button>
+    <a href="#contacto" class="btn btn-lime btn-sm">Hablemos</a>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ─────────────── HERO ─────────────── -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero-grid">
+
+    <div class="hero-left">
+      <div class="eyebrow">
+        <span class="ey-num">01 /</span> Marca · Buenos Aires · 2026
+      </div>
+
+      <h1 class="hero-h1">
+        Marketing inmobiliario<br />
+        operado como <em>sistema.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Pensamos, producimos y pautamos desde adentro del rubro. Equipo audiovisual propio, Meta Ads calibrado por zona y una capa de IA que responde el primer contacto antes que la competencia.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-lime">Hablemos <span class="arr">→</span></a>
+        <a href="#casos" class="btn btn-ghost">Ver casos</a>
+      </div>
+
+      <div class="hero-proof">
+        <div class="proof-lbl"><span class="pulse"></span>Confían en DV <span class="proof-count"><strong id="liveLeads">1.547</strong> leads este mes</span></div>
+        <div class="proof-clients" id="clientLogos">
+          <img class="cl cl-swap cl-toribio" src="clientes/toribio-achaval.png" data-dark="clientes/toribio-achaval.png" data-light="clientes/toribio-achaval-light.png" alt="Toribio Achával" />
+          <img class="cl cl-soldati" src="clientes/soldati-vista.png" alt="Soldati Vista" />
+          <span class="cl cl-svg cl-zip" role="img" aria-label="Zipcode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 195.48 47.11" fill="currentColor"><path d="M21.19.53V7L7.44,40H21.19v6.58H0V40.14l13.75-33H.66V.53Z"></path><path d="M25.46.53H32.7V46.58H25.46Z"></path><path d="M79.67,11.91V23.56c0,7.37-3.56,11.38-10.79,11.38H45.2V46.58H38V.53H68.88C76.11.53,79.67,4.54,79.67,11.91ZM45.2,7.11V28.36H68.88c2.3,0,3.55-1.05,3.55-4.34V11.45c0-3.29-1.25-4.34-3.55-4.34Z"></path><path d="M94.83,47.11C87.73,47.11,84,42.9,84,35.53v-24C84,4.21,87.73,0,94.83,0h0c7.11,0,10.79,4.21,10.79,11.58v4.47H98.78V11.12c0-3.29-1.45-4.54-3.75-4.54h0c-2.3,0-3.75,1.25-3.75,4.54V36c0,3.29,1.45,4.48,3.75,4.48h0c2.3,0,3.75-1.19,3.75-4.48V29.41h6.84v6.12c0,7.37-3.68,11.58-10.79,11.58Z"></path><path d="M109.44,11.58c0-7.37,3.88-11.58,11-11.58s11,4.21,11,11.58v24c0,7.37-3.88,11.58-11,11.58s-11-4.21-11-11.58ZM116.68,36c0,3.29,1.44,4.54,3.75,4.54s3.75-1.25,3.75-4.54V11.12c0-3.29-1.45-4.54-3.75-4.54s-3.75,1.25-3.75,4.54Z"></path><path d="M135,.53h25.73c7.23,0,10.79,4,10.79,11.38V35.2c0,7.37-3.56,11.38-10.79,11.38H135Zm7.24,6.58V40h18.36c2.3,0,3.68-1.19,3.68-4.48v-24c0-3.29-1.38-4.47-3.68-4.47Z"></path><path d="M183,19.94h9.94v6.58H183V40h12.51v6.58H175.74V.53h19.74V7.11H183Z"></path></svg></span>
+          <img class="cl cl-rubica" src="clientes/rubica.png" alt="Rubica" />
+          <img class="cl cl-swap cl-fidez" src="clientes/fidez-group.png" data-dark="clientes/fidez-group.png" data-light="clientes/fidez-group-dark.png" alt="Fidez Group" />
+          <span class="cl cl-svg cl-ini" role="img" aria-label="Ini Propiedades"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 533.87 152.88" fill="currentColor"><path d="M19.96,57.9h13.11v70.58h-13.11V57.9Z"></path><path d="M114.84,57.9v70.58h-10.79l-38.92-47.79v47.79h-13.01V57.9h10.79l38.92,47.79v-47.79h13.01Z"></path><path d="M133.8,57.9h13.11v70.58h-13.11V57.9Z"></path><path d="M198.51,110.56c0,6.12-4.53,9.89-11.84,9.89h-6.28v8.03h-5.17v-27.81h11.44c7.31,0,11.84,3.73,11.84,9.89ZM193.3,110.56c0-3.5-2.34-5.52-6.87-5.52h-6.04v11.05h6.04c4.53,0,6.87-2.03,6.87-5.52Z"></path><path d="M225.84,128.48l-5.68-8.15c-.36.04-.71.04-1.07.04h-6.28v8.11h-5.17v-27.81h11.44c7.31,0,11.84,3.73,11.84,9.89,0,4.21-2.15,7.31-5.92,8.78l6.4,9.14h-5.56ZM218.85,105.04h-6.04v11.09h6.04c4.53,0,6.87-2.07,6.87-5.56s-2.34-5.52-6.87-5.52Z"></path><path d="M238.67,114.57c0-8.22,6.36-14.3,14.98-14.3s14.98,6.04,14.98,14.3-6.36,14.3-14.98,14.3-14.98-6.08-14.98-14.3ZM263.43,114.57c0-5.68-4.17-9.77-9.78-9.77s-9.77,4.09-9.77,9.77,4.17,9.77,9.77,9.77,9.78-4.09,9.78-9.77Z"></path><path d="M301.37,110.56c0,6.12-4.53,9.89-11.84,9.89h-6.28v8.03h-5.17v-27.81h11.44c7.31,0,11.84,3.73,11.84,9.89ZM296.16,110.56c0-3.5-2.34-5.52-6.87-5.52h-6.04v11.05h6.04c4.53,0,6.87-2.03,6.87-5.52Z"></path><path d="M310.5,100.67h5.17v27.81h-5.17v-27.81Z"></path><path d="M348.01,124.15v4.33h-20.86v-27.81h20.3v4.33h-15.14v7.23h13.43v4.25h-13.43v7.67h15.7Z"></path><path d="M357.74,100.67h12.16c9.02,0,15.18,5.56,15.18,13.91s-6.16,13.91-15.18,13.91h-12.16v-27.81ZM369.66,124.11c6.2,0,10.21-3.77,10.21-9.54s-4.01-9.54-10.21-9.54h-6.75v19.07h6.75Z"></path><path d="M412.17,122.04h-13.91l-2.74,6.44h-5.32l12.52-27.81h5.09l12.56,27.81h-5.4l-2.78-6.44ZM410.46,117.99l-5.25-12.16-5.21,12.16h10.45Z"></path><path d="M427.86,100.67h12.16c9.02,0,15.18,5.56,15.18,13.91s-6.16,13.91-15.18,13.91h-12.16v-27.81ZM439.78,124.11c6.2,0,10.21-3.77,10.21-9.54s-4.01-9.54-10.21-9.54h-6.75v19.07h6.75Z"></path><path d="M485.51,124.15v4.33h-20.86v-27.81h20.3v4.33h-15.14v7.23h13.43v4.25h-13.43v7.67h15.7Z"></path><path d="M492.89,125.54l1.79-4.01c2.22,1.79,5.76,3.06,9.18,3.06,4.33,0,6.16-1.55,6.16-3.62,0-6-16.53-2.07-16.53-12.4,0-4.49,3.58-8.3,11.21-8.3,3.34,0,6.83.87,9.26,2.46l-1.63,4.01c-2.5-1.47-5.25-2.19-7.67-2.19-4.29,0-6.04,1.67-6.04,3.77,0,5.92,16.49,2.07,16.49,12.28,0,4.45-3.62,8.26-11.24,8.26-4.33,0-8.66-1.35-10.97-3.34Z"></path><polygon points="152.13 44.48 151.21 46.25 82.73 10.49 11.95 46.26 11.05 44.47 82.74 8.24 128.86 32.33 128.86 17.28 142.56 23.75 142.56 39.48 152.13 44.48"></polygon></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-frame">
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner tr"></div>
+        <div class="frame-corner bl"></div>
+        <div class="frame-corner br"></div>
+
+        <div class="frame-grid"></div>
+        <div class="frame-scan"></div>
+
+        <!-- HUD overlays around the robot -->
+        <div class="hud hud-tl">
+          <span class="hud-k">UNIT</span>
+          <span class="hud-v">DV-01</span>
+        </div>
+        <div class="hud hud-tr">
+          <span class="hud-rec"><span class="rec-dot"></span>REC</span>
+          <span class="hud-v">04:21:08</span>
+        </div>
+        <div class="hud hud-bl">
+          <span class="hud-k">STATUS</span>
+          <span class="hud-v on">ONLINE</span>
+        </div>
+        <div class="hud hud-br">
+          <span class="hud-k">DV-01</span>
+          <span class="hud-v">Hola, me llamo DAVE</span>
+        </div>
+
+        <!-- side ticks -->
+        <div class="side-ticks left">
+          <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span>
+        </div>
+        <div class="side-ticks right">
+          <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+        </div>
+
+        <!-- eye tracking ring around robot face -->
+        <div class="eye-ring"></div>
+
+        <img src="robot/idle.png" alt="" class="hero-robot" />
+
+        <!-- footer strip with telemetry -->
+        <div class="hud-telemetry">
+          <span class="tel"><span class="tel-k">CAM</span><span class="tel-v">4K·60</span></span>
+          <span class="tel"><span class="tel-k">RIG</span><span class="tel-v">IN-HOUSE</span></span>
+          <span class="tel"><span class="tel-k">EYE</span><span class="tel-v on">●</span></span>
+          <span class="tel"><span class="tel-k">BUILD</span><span class="tel-v">26.05</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- bottom strip -->
+  <div class="hero-strip">
+    <div class="strip-cell"><span class="sc-k">Costo por lead · venta</span><span class="sc-v">USD&nbsp;1,08</span></div>
+    <div class="strip-cell"><span class="sc-k">Costo por lead · alquiler</span><span class="sc-v">USD&nbsp;0,56</span></div>
+    <div class="strip-cell"><span class="sc-k">Operando desde</span><span class="sc-v">2021</span></div>
+    <div class="strip-cell"><span class="sc-k">Inmobiliarias activas</span><span class="sc-v">+20</span></div>
+  </div>
+</section>
+
+<!-- ─────────────── SIMULADOR ─────────────── -->
+<section class="sec sim" id="simulador" data-screen-label="02 Simulador">
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">02 /</span>
+      <span class="live"><span class="live-dot"></span>EN TIEMPO REAL</span>
+    </div>
+    <div class="sec-row">
+      <h2 class="sec-h2">Simulá tu próximo mes.</h2>
+      <p class="sec-lede">Calculá cuántos leads, visitas y operaciones podés generar con la inversión que tengas — calibrado con el costo por lead real de nuestras campañas activas.</p>
+    </div>
+  </div>
+
+  <div class="sim-grid">
+
+    <!-- LEFT — calculator -->
+    <div class="sim-calc">
+      <div class="calc-block">
+
+        <div class="calc-label"><span class="ey-num">A /</span> Tipo de campaña</div>
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" data-cpl="6.00" data-key="captacion">
+            <span class="tab-k">Captación venta</span>
+            <span class="tab-v">Costo por lead · USD 6,00</span>
+          </button>
+          <button class="tab" data-cpl="0.56" data-key="alquiler">
+            <span class="tab-k">Alquiler</span>
+            <span class="tab-v">Costo por lead · USD 0,56</span>
+          </button>
+          <button class="tab" data-cpl="1.08" data-key="venta">
+            <span class="tab-k">Venta</span>
+            <span class="tab-v">Costo por lead · USD 1,08</span>
+          </button>
+        </div>
+
+        <div class="calc-label spc-top"><span class="ey-num">B /</span> Inversión mensual</div>
+        <div class="slider-wrap">
+          <input type="range" id="invest" min="400" max="5000" step="50" value="500" />
+          <div class="slider-readout">
+            <div class="sr-val">USD&nbsp;<span id="investV">500</span></div>
+            <div class="sr-range">
+              <span>USD 400</span><span>USD 5.000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-label spc-top"><span class="ey-num">C /</span> Proyección estimada</div>
+        <div class="kpis">
+          <div class="kpi">
+            <span class="kpi-k">Leads</span>
+            <span class="kpi-v" id="kLeads">83</span>
+            <span class="kpi-d">contactos cualificados</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-k">Visitas</span>
+            <span class="kpi-v" id="kVisit">8</span>
+            <span class="kpi-d">10% de los leads</span>
+          </div>
+          <div class="kpi accent">
+            <span class="kpi-k">Operaciones</span>
+            <span class="kpi-v" id="kOps">1</span>
+            <span class="kpi-d">~1 de cada 8 visitas</span>
+          </div>
+        </div>
+
+        <div class="calc-actions">
+          <a class="btn btn-lime btn-stack" href="#contacto">
+            <span>Enviame este reporte por WhatsApp</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="btn btn-ghost btn-stack" href="#contacto">
+            <span>Quiero hablar con un asesor</span>
+            <span class="arr">→</span>
+          </a>
+        </div>
+
+        <p class="calc-foot">* Estimaciones basadas en el costo por lead promedio de campañas activas en CABA y Corredor Norte durante el último trimestre. Conversión visita→operación calibrada por tipo de inmueble.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT — feed -->
+    <div class="sim-feed">
+      <div class="feed-head">
+        <div>
+          <div class="feed-k">Feed de leads · últimos 30 días</div>
+          <div class="feed-count">
+            +<span id="leadsCount">1.547</span>
+            <span class="feed-month">este mes</span>
+          </div>
+        </div>
+        <div class="feed-meta">
+          <span class="badge-live"><span class="live-dot"></span>LIVE</span>
+        </div>
+      </div>
+
+      <ul class="feed-list" id="feedList">
+        <!-- populated by JS -->
+      </ul>
+
+      <div class="feed-fade"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────── CAPA IA ─────────────── -->
+<section class="sec ai" id="ai" data-screen-label="03 Capa IA">
+  <div class="ai-bg"></div>
+
+  <div class="sec-head ai-head">
+    <div class="sec-eyebrow accent-blue">
+      <span class="ey-num">03 /</span>
+      <span class="soon">Próximamente · Capa de IA</span>
+    </div>
+    <h2 class="sec-h2 big">
+      Cada lead, respondido<br/>
+      <em class="blue">en tiempo real.</em>
+    </h2>
+    <p class="sec-lede max">
+      Estamos construyendo una capa de IA propia que toma el primer contacto en WhatsApp apenas el lead entra. Responde con contexto de la propiedad y la cartera, califica progresivamente y deriva visitas agendadas al agente.
+    </p>
+  </div>
+
+  <div class="ai-grid">
+
+    <!-- LEFT: stats -->
+    <div class="ai-stats">
+      <div class="stat">
+        <div class="stat-top">
+          <span class="stat-id">M.01</span>
+          <span class="stat-src">HBR / MIT · 2011</span>
+        </div>
+        <div class="stat-v"><span class="big">100</span><span class="x">×</span></div>
+        <div class="stat-k">más probabilidad de contacto respondiendo en menos de 5 minutos vs. 30 minutos.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top">
+          <span class="stat-id">M.02</span>
+          <span class="stat-src">NAR · 2025</span>
+        </div>
+        <div class="stat-v"><span class="big">78</span><span class="x">%</span></div>
+        <div class="stat-k">de compradores cierra con el primer agente que les responde.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top">
+          <span class="stat-id">M.03</span>
+          <span class="stat-src">Inman Tech Survey · 2025</span>
+        </div>
+        <div class="stat-v"><span class="big">917</span><span class="x">′</span></div>
+        <div class="stat-k">delay actual promedio del agente inmobiliario — 15h 17m hasta el primer contacto.</div>
+      </div>
+
+      <div class="ai-cta">
+        <a href="#contacto" class="btn btn-blue">Avisame cuando esté listo <span class="arr">→</span></a>
+        <span class="ai-foot">Build interno · Q3 2026</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: phone -->
+    <div class="ai-phone-wrap">
+      <div class="phone-stage">
+        <img src="robot/pensando.png" alt="" class="ai-robot" />
+        <div class="phone">
+        <div class="phone-top">
+          <span class="phone-time">10:42</span>
+          <span class="phone-bars">●●●●●</span>
+        </div>
+        <div class="phone-head">
+          <div class="ph-avatar"><span><span class="br">[</span>DV<span class="br">]</span></span></div>
+          <div class="ph-meta">
+            <div class="ph-name">Digital View · Asistente</div>
+            <div class="ph-status"><span class="live-dot tiny"></span>en línea</div>
+          </div>
+        </div>
+
+        <div class="chat" id="chat">
+          <div class="msg in">
+            <span class="msg-time">10:38</span>
+            <p>Hola, vi el aviso de la casa en Vicente López — 3 amb. con jardín. ¿Sigue disponible?</p>
+          </div>
+          <div class="msg out">
+            <span class="msg-time">10:38 · &lt;1 min</span>
+            <p>¡Hola Lautaro! Sí, sigue disponible. Te paso el dossier rápido:<br/>· 3 amb · 78 m²<br/>· Patio 22 m²<br/>· USD 165.000</p>
+          </div>
+          <div class="msg out">
+            <p>¿Te sirve que armemos una visita esta semana? Tengo huecos jue 17h y vie 11h.</p>
+          </div>
+          <div class="msg in">
+            <p>Vi 11h me sirve 👌</p>
+          </div>
+          <div class="msg out">
+            <span class="msg-tag">Visita agendada · vi 11:00</span>
+            <p>Listo, te confirmo con el agente. Mateo te escribe en 10 min con la dirección exacta.</p>
+          </div>
+          <div class="msg typing"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="phone-foot">
+          <div class="phone-input">Mensaje…</div>
+          <div class="phone-send">→</div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ai-sources">
+    <span>Fuentes citadas →</span>
+    <span>HBR / MIT 2011</span>
+    <span>National Association of Realtors · 2025</span>
+    <span>Inman Real Estate Tech Survey · 2025</span>
+  </div>
+</section>
+
+<!-- ─────────────── PROBLEMA ─────────────── -->
+<section class="sec problem" id="problema" data-screen-label="04 Problema">
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">04 /</span> El problema
+    </div>
+    <h2 class="sec-h2 big">
+      El boca a boca <em>no es una estrategia.</em><br/>
+      Es una esperanza.
+    </h2>
+  </div>
+
+  <div class="pain-grid">
+    <article class="pain">
+      <div class="pain-num">P.01</div>
+      <h3>Dependen de referidos.</h3>
+      <p>Cuando no llegan, el negocio se frena. No hay control sobre el ritmo del próximo contacto.</p>
+    </article>
+    <article class="pain">
+      <div class="pain-num">P.02</div>
+      <h3>No saben cuándo aparece el próximo comprador.</h3>
+      <p>O el próximo propietario para captar. La caja se mueve por suerte, no por sistema.</p>
+    </article>
+    <article class="pain">
+      <div class="pain-num">P.03</div>
+      <h3>Sin canal propio, son rehenes del boca a boca.</h3>
+      <p>La competencia que sí tiene pauta avanza. Cada mes que pasa, la diferencia crece.</p>
+    </article>
+  </div>
+
+  <div class="problem-close">
+    <span class="pc-tag">El resultado →</span>
+    <span class="pc-line">Crecimiento impredecible. Oportunidades perdidas. Una competencia que ya entendió el juego.</span>
+  </div>
+</section>
+
+<!-- ─────────────── SERVICIOS ─────────────── -->
+<section class="sec services" id="servicios" data-screen-label="05 Servicios">
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">05 /</span> Lo que hacemos
+    </div>
+    <div class="sec-row">
+      <h2 class="sec-h2">Cuatro piezas. Un sistema integrado.</h2>
+      <p class="sec-lede">Nada tercerizado. Estrategia, producción, pauta y reportes salen del mismo equipo, hablando la misma lengua.</p>
+    </div>
+  </div>
+
+  <div class="svc-grid">
+    <article class="svc">
+      <div class="svc-head">
+        <span class="svc-num">S.01</span>
+        <span class="svc-tag">Estrategia</span>
+      </div>
+      <h3>Análisis y estrategia</h3>
+      <p>Del negocio, la zona y el perfil del cliente ideal. Mapeo de competencia, oferta, precio y posicionamiento antes de pautar un peso.</p>
+      <ul class="svc-bullets">
+        <li>Diagnóstico inicial · 7 a 10 días</li>
+        <li>Persona buyer + persona propietario</li>
+        <li>Calendarización 30 / 60 / 90 días</li>
+      </ul>
+      <div class="svc-spec">
+        <span class="sp-k">deliverable</span>
+        <span class="sp-v">brief + calendario.pdf</span>
+      </div>
+    </article>
+
+    <article class="svc">
+      <div class="svc-head">
+        <span class="svc-num">S.02</span>
+        <span class="svc-tag accent">Meta Ads</span>
+      </div>
+      <h3>Pauta en Meta calibrada por zona</h3>
+      <p>Campañas en Facebook e Instagram orientadas a leads de calidad — no a vanity. Optimización diaria, costo por lead medido contra benchmark interno.</p>
+      <ul class="svc-bullets">
+        <li>Captación venta · Costo por lead USD 6,00</li>
+        <li>Venta · Costo por lead USD 1,08</li>
+        <li>Alquiler · Costo por lead USD 0,56</li>
+      </ul>
+      <div class="svc-spec accent">
+        <span class="sp-k">benchmark</span>
+        <span class="sp-v">USD 0,56 → 6,00 / lead</span>
+      </div>
+    </article>
+
+    <article class="svc">
+      <div class="svc-head">
+        <span class="svc-num">S.03</span>
+        <span class="svc-tag">Producción</span>
+      </div>
+      <h3>Audiovisual in-house</h3>
+      <p>Fotos y videos de propiedades con equipo propio. Director de actores cuando hace falta. Sin tercerizar, sin freelance disperso, sin cuello de botella.</p>
+      <ul class="svc-bullets">
+        <li>Cámaras + drone + estabilización</li>
+        <li>Edición y motion en-equipo</li>
+        <li>Output semanal por cuenta activa</li>
+      </ul>
+      <div class="svc-spec">
+        <span class="sp-k">output</span>
+        <span class="sp-v">+200 piezas / mes</span>
+      </div>
+    </article>
+
+    <article class="svc">
+      <div class="svc-head">
+        <span class="svc-num">S.04</span>
+        <span class="svc-tag">Métrica</span>
+      </div>
+      <h3>Reportes mensuales</h3>
+      <p>Métricas reales — leads, costo por lead, visitas, operaciones. Base de datos compartida que el cliente puede consultar cuando quiera, no cuando se lo enviamos.</p>
+      <ul class="svc-bullets">
+        <li>Dashboard activo 24/7</li>
+        <li>Reporte ejecutivo mensual</li>
+        <li>Revisión trimestral de objetivos</li>
+      </ul>
+      <div class="svc-spec">
+        <span class="sp-k">acceso</span>
+        <span class="sp-v">24/7 · dashboard compartido</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ─────────────── CASOS ─────────────── -->
+<section class="sec cases" id="casos" data-screen-label="06 Casos">
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">06 /</span> Casos de éxito
+    </div>
+    <div class="sec-row">
+      <h2 class="sec-h2">Resultados reales.</h2>
+      <p class="sec-lede">Tres clientes, tres contextos distintos. Mismo sistema aplicado.</p>
+    </div>
+  </div>
+
+  <div class="case-grid">
+
+    <article class="case">
+      <div class="case-head">
+        <span class="case-num">C.01</span>
+        <span class="case-tag">Desarrolladora</span>
+      </div>
+      <h3 class="case-name">Fidez Group</h3>
+      <p class="case-who">Juan Caillet Bois · <a href="https://instagram.com/fidezgroup" target="_blank" rel="noopener">@fidezgroup</a></p>
+      <div class="case-metrics">
+        <div class="cm">
+          <span class="cm-v">+820</span>
+          <span class="cm-k">leads / 90 días</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">38%</span>
+          <span class="cm-k">visitas agendadas</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">12</span>
+          <span class="cm-k">operaciones cerradas</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">+1200%</span>
+          <span class="cm-k">alcance vs. 2024</span>
+        </div>
+      </div>
+      <p class="case-line">Producción audiovisual completa de cartera + Meta Ads orientado a captación venta en desarrollos premium.</p>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <span class="case-num">C.02</span>
+        <span class="case-tag">Inmobiliaria</span>
+      </div>
+      <h3 class="case-name">Abitat</h3>
+      <p class="case-who">Nordelta + Puertos del Lago · <a href="https://instagram.com/somosabitat" target="_blank" rel="noopener">@somosabitat</a></p>
+      <div class="case-metrics">
+        <div class="cm">
+          <span class="cm-v">240</span>
+          <span class="cm-k">leads / 90 días</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">+1400%</span>
+          <span class="cm-k">aumento de alcance</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">+633%</span>
+          <span class="cm-k">contactos generados</span>
+        </div>
+        <div class="cm">
+          <span class="cm-v">9</span>
+          <span class="cm-k">operaciones cerradas</span>
+        </div>
+      </div>
+      <p class="case-line">Captación segmentada por barrio + reposicionamiento orgánico en Instagram. Primer cliente del Corredor Norte 2024.</p>
+    </article>
+
+    <article class="case feat">
+      <div class="case-head">
+        <span class="case-num">C.03</span>
+        <span class="case-tag accent">Caso destacado</span>
+      </div>
+      <h3 class="case-name">José M. Chaher · Soldati Vista</h3>
+      <p class="case-who">Asesor inmobiliario · <a href="https://instagram.com/team_noia" target="_blank" rel="noopener">@team_noia</a></p>
+      <div class="case-metrics">
+        <div class="cm big">
+          <span class="cm-v">+400</span>
+          <span class="cm-k">leads / 90 días</span>
+        </div>
+        <div class="cm big">
+          <span class="cm-v">10&nbsp;días</span>
+          <span class="cm-k">a primera venta</span>
+        </div>
+        <div class="cm big">
+          <span class="cm-v">+1400%</span>
+          <span class="cm-k">aumento de alcance</span>
+        </div>
+        <div class="cm big">
+          <span class="cm-v">+633%</span>
+          <span class="cm-k">contactos</span>
+        </div>
+      </div>
+      <p class="case-line">Un asesor independiente que pasó de boca a boca a sistema. Diez días para cerrar la primera venta atribuible a pauta.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ─────────────── EQUIPO ─────────────── -->
+<section class="sec team" id="equipo" data-screen-label="07 Equipo">
+
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">07 /</span> Las personas detrás del resultado
+    </div>
+    <h2 class="sec-h2">Equipo</h2>
+  </div>
+
+  <div class="team-layout">
+
+    <div class="team-main">
+      <div class="team-sub">
+        <span class="ts-num">T.02</span>
+        <span class="ts-k">Squad</span>
+      </div>
+
+      <div class="team-members">
+        <article class="member">
+          <div class="m-photo"><img src="team/valentin.jpg" alt="Valentín Hetcher" /></div>
+          <div class="m-role">Líder Comercial</div>
+          <h3 class="m-name">Valentín Hetcher</h3>
+          <p class="m-bio">Maneja la relación con cuentas activas y nuevos desarrollos. Cinco años operando pauta en real estate.</p>
+        </article>
+        <article class="member">
+          <div class="m-photo"><img src="team/nicolas.jpg" alt="Nicolás Caillet" /></div>
+          <div class="m-role">Líder Creativo</div>
+          <h3 class="m-name">Nicolás Caillet</h3>
+          <p class="m-bio">Lidera producción audiovisual, dirección de campañas y el sistema de marca. Foco obsesivo en el output semanal.</p>
+        </article>
+        <article class="member">
+          <div class="m-photo"><img src="team/felipe.jpg" alt="Felipe Probaos" /></div>
+          <div class="m-role">Media buyer + Automatizaciones con IA</div>
+          <h3 class="m-name">Felipe Probaos</h3>
+          <p class="m-bio">Optimiza la pauta por zona día a día y arma las automatizaciones que conectan cada lead con el equipo al instante.</p>
+        </article>
+        <article class="member">
+          <div class="m-photo"><img src="team/bautista.jpg" alt="Bautista Ramallo" /></div>
+          <div class="m-role">Project Manager</div>
+          <h3 class="m-name">Bautista Ramallo</h3>
+          <p class="m-bio">Coordina la producción semana a semana: briefs, entregas y que cada cliente tenga su contenido a tiempo.</p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="team-side">
+      <div class="team-side-inner">
+        <div class="side-marker">
+          <span class="sm-k">T.03 · Próximo integrante</span>
+          <span class="sm-v">vos</span>
+        </div>
+        <p class="side-copy">A cada cliente lo tratamos como un miembro más del squad. Mismo grupo de WhatsApp, mismo dashboard, misma agenda. <em>Esta silueta sos vos.</em></p>
+        <div class="side-robot">
+          <img src="robot/lateral.png" alt="" id="teamRobot" />
+          <div class="reveal-bar"><span id="revealFill"></span></div>
+          <div class="reveal-labels">
+            <span>00 llamada</span>
+            <span>01 plan</span>
+            <span>02 setup</span>
+            <span>03 activación</span>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn-lime btn-stack side-cta">
+          <span>Sumate al squad</span>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ─────────────── CONTACTO ─────────────── -->
+<section class="sec contact" id="contacto" data-screen-label="08 Contacto">
+  <div class="sec-head">
+    <div class="sec-eyebrow">
+      <span class="ey-num">08 /</span> Hablemos
+    </div>
+    <h2 class="sec-h2 big">Trabajemos juntos.</h2>
+  </div>
+
+  <div class="contact-grid">
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="field">
+        <label for="cn">
+          <span class="lbl-num">01</span>
+          <span>Nombre</span>
+        </label>
+        <input id="cn" name="name" type="text" autocomplete="name" placeholder="Tu nombre completo" required />
+      </div>
+      <div class="field">
+        <label for="ce">
+          <span class="lbl-num">02</span>
+          <span>Email</span>
+        </label>
+        <input id="ce" name="email" type="email" autocomplete="email" placeholder="vos@inmobiliaria.com" required />
+      </div>
+      <div class="field">
+        <label for="cm">
+          <span class="lbl-num">03</span>
+          <span>Mensaje</span>
+        </label>
+        <textarea id="cm" name="message" rows="4" placeholder="Contanos qué buscás resolver. Una línea alcanza." required></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-lime btn-block">Enviar <span class="arr">→</span></button>
+        <span class="form-note">Respondemos el mismo día hábil.</span>
+      </div>
+    </form>
+
+    <aside class="contact-info">
+      <div class="ci-block">
+        <div class="ci-k">Email</div>
+        <a class="ci-v" href="mailto:digitalviewstrategies@gmail.com">digitalviewstrategies@gmail.com</a>
+      </div>
+      <div class="ci-block">
+        <div class="ci-k">Instagram</div>
+        <a class="ci-v" href="https://instagram.com/digitalviewagency" target="_blank" rel="noopener">@digitalviewagency</a>
+      </div>
+      <div class="ci-block">
+        <div class="ci-k">Locación</div>
+        <span class="ci-v">Buenos Aires · Argentina</span>
+        <span class="ci-sub">Operando en CABA + Corredor Norte</span>
+      </div>
+      <div class="ci-block">
+        <div class="ci-k">Horario</div>
+        <span class="ci-v">L–V · 09:00 → 19:00</span>
+        <span class="ci-sub"><span class="live-dot tiny"></span>Equipo activo ahora</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Easter egg dancing robot on submit -->
+  <div class="dance-overlay" id="danceOverlay" hidden>
+    <div class="dance-card">
+      <video
+        class="dance-video"
+        src="robot/animated-01.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="robot/idle.png"
+        aria-hidden="true"
+      ></video>
+      <div class="dance-msg">
+        <div class="dance-tag">MENSAJE RECIBIDO</div>
+        <h3>Te respondemos<br/>hoy mismo.</h3>
+        <p>Nico y Valen están del otro lado. Te escribimos antes de que cierre el día.</p>
+        <div class="dance-meta">
+          <span class="dm-k">PRÓXIMO PASO</span>
+          <span class="dm-v">Llamada de 15′ · esta semana</span>
+        </div>
+        <button type="button" class="btn btn-dark" id="closeDance">Cerrar <span class="arr">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer class="foot" data-screen-label="09 Footer">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <span class="dv-mark big"><span class="br">[</span>DV<span class="br">]</span></span>
+      <span class="foot-claim">Marketing inmobiliario operado como sistema.</span>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#simulador">Simulador</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#casos">Casos</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+
+  <div class="foot-bottom">
+    <span class="foot-c">© 2026 Digital View. Todos los derechos reservados.</span>
+    <span class="foot-s">Buenos Aires · Argentina</span>
+    <span class="foot-ig"><a href="https://instagram.com/digitalviewagency" target="_blank" rel="noopener">@digitalviewagency</a></span>
+  </div>
+
+  <div class="foot-sig" aria-hidden="true">
+    <div class="sig-left">
+      <img src="robot/idle.png" alt="" class="foot-robot" />
+      <span>DV-01 · fuera de servicio hasta mañana 09:00</span>
+    </div>
+    <span class="foot-build">build 26.05 · BRACKET system v.3</span>
+  </div>
+</footer>
+
+<!-- ─────────────── TWEAKS PANEL ─────────────── -->
+<div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+  <div class="tweaks-head">
+    <span class="tw-title">Tweaks</span>
+    <span class="tw-close" id="twClose">✕</span>
+  </div>
+  <div class="tweaks-body">
+    <div class="tw-section">
+      <span class="tw-label">Tema</span>
+      <div class="tw-radio" data-tweak="theme">
+        <button data-value="dark" class="is-active"><span class="ico">●</span> Dark</button>
+        <button data-value="light"><span class="ico">○</span> Light</button>
+      </div>
+    </div>
+    <div class="tw-section">
+      <span class="tw-label">Densidad de feed</span>
+      <div class="tw-radio" data-tweak="feedRate">
+        <button data-value="slow">Lento</button>
+        <button data-value="fast" class="is-active">Rápido</button>
+      </div>
+    </div>
+  </div>
+  <div class="tw-foot">DV · build 26.05</div>
+</div>
+
+<script>
+/* tweakable defaults */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "feedRate": "fast"
+}/*EDITMODE-END*/;
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>
